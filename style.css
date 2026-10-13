@@ -115,19 +115,55 @@ nav ul li a{
     font-family: "Inter", sans-serif;
 }
 
-.historia .container-texto {
+.container-texto {
     color: #ffffff;
     font-family: "Roboto", sans-serif;
-    font-weight: 200;
-    font-size: 14px;
+    font-weight: normal;
+    font-size: 18px;
+    text-align: center;
     line-height: 1.6;
     padding: 40px;
-    width: 450px;
-    height: 320px;
     background: linear-gradient(
         to bottom, 
         rgba(26, 42, 47, 1) 10%,    
         rgba(26, 42, 47, 0.6) 60%, 
         rgba(26, 42, 47, 0) 100% 
     );
+}
+
+.texto-historia{
+    width: 480px;
+    height: 300px;
+}
+.caca {
+    background-image: url(./Assets/lullaby-of-the-dark-key-art.png);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 120px;
+    box-sizing: border-box;
+}
+
+.titulo-caca {
+    margin: 4% 2%;
+}
+
+.caixa-textos-inferiores {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.caca .container-texto{
+    justify-content: start;
+}
+
+.texto-caca{
+   width: 400px;
+   height: 160px;
 }
