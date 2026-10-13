@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Georama:ital,wght@0,100..900;1,100..900&family=Homemade+Apple&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Italianno&family=Lexend+Deca:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=SN+Pro:ital,wght@0,200..900;1,200..900&family=Unbounded:wght@200..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.home {
+    background-image: url(./Assets/dbd.jpg);
+    background-size: cover;
+    height: 100vh;
+}
+
+nav{
+    background-color: #03030383;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+}
+
+nav ul{
+    display: flex;
+    list-style: none;
+    gap: 100px;
+    margin: 35px;
+}
+
+nav ul li a{
+    color: #ffff;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    font-weight: bolder;
+    font-size: 14px
+}
+
+.btn{
+    color: #ffff;
+    font-weight:bolder;
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+    background: linear-gradient(
+        to left, 
+        rgba(99, 31, 42, 1) 0%,     /* Gerado com IA*/
+        rgba(99, 31, 42, 0.8) 58%,   
+        rgba(99, 31, 42, 0.67) 81%,  
+        rgba(99, 31, 42, 0) 100%     
+    );
+    border: none;
+    width: 190px;
+    height: 60px;
+}
+
+.home-texto{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    margin-top: 15%;
+}
+
+.home .home-texto-principal{
+    margin: 0 auto;
+}
+
+.home-texto h1{
+    font-size: 80px;
+    color: #ffff;
+    font-family: "Inter", sans-serif;
+}
+
+.home .btn-home{
+    align-self: center;
+    margin-top: 10%;
+}
+
+.historia {
+    background: 
+        linear-gradient(to bottom, rgba(2, 2, 2, 0.967), rgba(0, 0, 0, 0.89)),
+        url(./Assets/nevoa2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 25%; 
+}
+
+.container-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.historia img {
+    height: auto;
+    width: 350px;
+}
+
+.conteudo-historia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.titulo h2 {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: bolder;
+    font-family: "Inter", sans-serif;
+}
+
+.historia .container-texto {
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 40px;
+    width: 450px;
+    height: 320px;
+    background: linear-gradient(
+        to bottom, 
+        rgba(26, 42, 47, 1) 10%,    
+        rgba(26, 42, 47, 0.6) 60%, 
+        rgba(26, 42, 47, 0) 100% 
+    );
+}
