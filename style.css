@@ -32,7 +32,14 @@ nav ul li a{
     text-decoration: none;
     font-family: "Inter", sans-serif;
     font-weight: bolder;
-    font-size: 14px
+    font-size: 14px;
+    transition: 0.3s;
+    border-bottom: 3px solid transparent;
+    display: inline-block;
+}
+
+nav ul li a:hover{
+    border-bottom:3px solid #AA1D32;
 }
 
 .btn{
@@ -113,6 +120,9 @@ nav ul li a{
     font-size: 40px;
     font-weight: bolder;
     font-family: "Inter", sans-serif;
+    border-bottom: 5px #AA1D32 solid;
+    display: inline-block;
+
 }
 
 .container-texto {
@@ -134,6 +144,7 @@ nav ul li a{
 .texto-historia{
     width: 480px;
     height: 300px;
+    text-align: left;
 }
 .caca {
     background-image: url(./Assets/lullaby-of-the-dark-key-art.png);
@@ -166,4 +177,155 @@ nav ul li a{
 .texto-caca{
    width: 400px;
    height: 160px;
+}
+.sobre {
+    background: 
+        linear-gradient(to bottom, rgba(2, 2, 2, 0.967), rgba(0, 0, 0, 0.89)),
+        url(./Assets/nevoa2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-sobre {
+    margin: 5% 0 5% 10%;
+}
+
+.elementos-sobre {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    gap: 5%; 
+    padding: 0 5%;
+}
+
+.bloco-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 45%;
+}
+
+.sobre .texto-sobre {
+    color: #ffff;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    text-align: left;
+    width: 100%;
+    margin: 0; 
+}
+
+.sobre img {
+    width: 530px;
+    max-width: 100%; 
+}
+
+.jogabilidade {
+    background: 
+        linear-gradient(to bottom, rgba(2, 2, 2, 0.967), rgba(0, 0, 0, 0.89)),
+        url(./Assets/nevoa2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50px; 
+}
+
+.titulo-jogabilidade {
+    margin: 8% 0 3% 10%;
+}
+
+.jogabilidade .conteudo-jogabilidade {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 5%;
+    color: #ffff;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.bloco-texto-jogabilidade {
+    width: 38%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.container-imagens {
+    position: relative;
+    width: 500px;
+    height: 350px;
+}
+
+.jogabilidade .img-killer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 420px;
+    height: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+    z-index: 1;
+}
+
+.jogabilidade .img-surv {
+    position: absolute;
+    bottom: -60px;
+    left: -80px;
+    width: 420px;
+    height: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+    z-index: 2;
+}
+
+.conteudo-perks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+    padding: 0 5%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.jogabilidade .img-perks {
+    width: 800px; 
+    height: auto;
+}
+
+.bloco-texto-perks {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 45%;
+    text-align: left;
+}
+
+.bloco-texto-perks h3 {
+    color: #ffff;
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+    margin: 0;
+}
+
+.bloco-texto-perks p {
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    text-align: left;
+    line-height: 1.6;
+    padding: 40px;
+    background: linear-gradient(
+        to bottom, 
+        rgba(26, 42, 47, 1) 10%,    
+        rgba(26, 42, 47, 0.6) 60%, 
+        rgba(26, 42, 47, 0) 100% 
+    );
 }
