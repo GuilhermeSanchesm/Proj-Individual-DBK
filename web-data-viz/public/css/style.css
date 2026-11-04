@@ -81,6 +81,12 @@ nav ul li a:hover {
 
 .home .home-texto-principal {
     margin: 0 auto;
+    display: flex;
+}
+
+.home-texto-principal img{
+    width: 280px;
+    height: auto;
 }
 
 .home-texto h1 {
