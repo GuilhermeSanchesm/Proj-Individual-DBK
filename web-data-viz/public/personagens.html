@@ -15,7 +15,7 @@
             <ul>
                 <li><a href="./mural.html">INICIO</a></li>
                 <li><a class="nav-selecionado" href="#">PERSONAGENS</a></li>
-                <li><a href="#">MAPAS</a></li>
+                <li><a href="./mapas.html">MAPAS</a></li>
                 <li><a href="#">QUIZ</a></li>
                 <li><a href="#">DASHBOARD</a></li>
                 <li><a href="#">PERFIL</a></li>
@@ -27,13 +27,13 @@
             <div class="home-texto-principal">
                 <h1>PERSONAGENS</h1>
                 <div class="opcoes-personagens">
-                    <p id="btn-killers">KILLERS</p>
-                    <p id="btn-sobreviventes">SOBREVIVENTES</p>
+                    <p id="btn-killers" onclick="mostrar_killers()">KILLERS</p>
+                    <p id="btn-sobreviventes" onclick="mostrar_sobreviventes()">SOBREVIVENTES</p>
                 </div>
             </div>
         </div>
 
-        <div class="grid-imagens">
+        <div class="grid-imagens" id="grid-killers">
             <div class="card-personagem">
                 <img src="./Assets/killer1.webp" alt="">
                 <span>Trapper</span>
@@ -87,7 +87,83 @@
                 <span>Demogorgon</span>
             </div>
         </div>
-    </div>
+
+        <!-- pt2 -->
+<!-- pt2 -->
+        <div class="grid-imagens" style="display: none;" id="grid-sobreviventes">
+            <div class="card-personagem">
+                <img src="./Assets/surv1.webp" alt="">
+                <span>Dwight</span>
+            </div>
+
+            <div class="card-personagem">
+                <img src="./Assets/surv2.webp" alt="">
+                <span>Meg</span>
+            </div>
+
+            <div class="card-personagem">
+                <img src="./Assets/surv3.webp" alt="">
+                <span>Claudette</span>
+            </div>
+
+            <div class="card-personagem">
+                <img src="./Assets/surv4.webp" alt="">
+                <span>Jake</span>
+            </div>
+
+            <div class="card-personagem">
+                <img src="./Assets/surv5.webp" alt="">
+                <span>Feng min</span>
+            </div>
+
+            <div class="card-personagem">
+                <img src="./Assets/surv6.webp" alt="">
+                <span>Leon</span>
+            </div>
+
+            <div class="card-personagem">
+                <img src="./Assets/surv7.webp" alt="">
+                <span>Mikaela</span>
+            </div>
+
+            <div class="card-personagem">
+                <img src="./Assets/surv8.webp" alt="">
+                <span>Cheryl Mason</span>
+            </div>
+
+            <div class="card-personagem"> 
+                <img src="./Assets/surv9.webp" alt="">
+                <span>Ada Wong</span>
+            </div>
+
+            <div class="card-personagem">
+                <img src="./Assets/surv10.webp" alt="">
+                <span>Sable Ward</span>
+            </div>
+
+            <div class="card-personagem">
+                <img src="./Assets/surb11.webp" alt="">
+                <span>Alan Wake</span>
+            </div>
+
+            <div class="card-personagem">
+                <img src="./Assets/surv12.webp" alt="">
+                <span>Yun Jin Lee</span>
+            </div>
+        </div>
 </body>
+
+<script>
+
+    function mostrar_sobreviventes(){
+        document.getElementById('grid-killers').style.display = 'none'
+        document.getElementById('grid-sobreviventes').style.display = 'grid'
+    }
+
+        function mostrar_killers(){
+        document.getElementById('grid-sobreviventes').style.display = 'none'
+        document.getElementById('grid-killers').style.display = 'grid'
+    }
+</script>
 
 </html>
