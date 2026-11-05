@@ -16,7 +16,7 @@ body {
         linear-gradient(to bottom, rgb(2, 2, 2), rgba(0, 0, 0, 0.877)),
         url(../Assets/nevoa.png);
     background-size: cover;
-    height: 100vh; 
+    height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -117,8 +117,8 @@ nav .nav-selecionado {
     padding: 10px 20px;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
-    max-height: 65vh;       
-    overflow-y: auto;      
+    max-height: 65vh;
+    overflow-y: auto;
 }
 
 .card-mapa {
@@ -157,4 +157,40 @@ nav .nav-selecionado {
 
 .grid-imagens::-webkit-scrollbar-thumb {
     background: #AA1D32;
+}
+
+.auto-show {
+    animation: auto-show both;
+    animation-timeline: view();
+    animation-range: entry 1% 100vh;
+}
+
+@keyframes auto-show {
+    from {
+        opacity: 0.3;
+        transform: translateY(150px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auto-show-texto {
+    animation: auto-show-texto both;
+    animation-timeline: view();
+    animation-range: entry 1% cover 50vh;
+}
+
+@keyframes auto-show-texto {
+    from {
+        opacity: 0.5;
+        transform: scale(1.02) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
