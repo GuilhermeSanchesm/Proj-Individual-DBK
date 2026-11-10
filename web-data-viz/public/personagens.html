@@ -27,125 +27,166 @@
             <div class="home-texto-principal">
                 <h1>PERSONAGENS</h1>
                 <div class="opcoes-personagens">
-                    <p id="btn-killers" onclick="mostrar_killers()">KILLERS</p>
-                    <p id="btn-sobreviventes" onclick="mostrar_sobreviventes()">SOBREVIVENTES</p>
+                    <p class="opcao-exibir" id="btn-killers" onclick="mostrar_killers()">KILLERS</p>
+                    <p class="opcao-exibir" id="btn-sobreviventes" onclick="mostrar_sobreviventes()">SOBREVIVENTES</p>
                 </div>
             </div>
         </div>
 
+        <div class="sobre-personagem">
+            <img src="./Assets/trappersobre.webp" alt="">
+            
+            <div class="textos-sobre-personagem">
+                <h1 id="titulo-sobre">O TRAPPER</h1>
+                <p id="descricao-sobre">Munido de um conjunto de Armadilhas para Ursos, O Trapper é especialista em capturar Sobreviventes desprevenidos. Ao posicionar armadilhas em áreas de grande circulação e em trechos de grama alta, ele cria uma zona letal que obriga os Sobreviventes a se moverem com cautela. Ao enfrentar O Armadilheiro, um simples passo em falso pode ser fatal.</p>
+                <button class="btn-prox" onclick="passar()">PRÓXIMO</button>
+            </div>
+        </div>
         <div class="grid-imagens" id="grid-killers">
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/killer1.webp" alt="">
                 <span>Trapper</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/killer2.webp" alt="">
                 <span>Bruxa Meg</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/killer3.webp" alt="">
                 <span>Sininho</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/killer4.webp" alt="">
-                <span>Michael Myers</span>
+                <span>O vulto</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/killer5.webp" alt="">
                 <span>Billy</span>
             </div>
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/killer6.webp" alt="">
                 <span>Doutor</span>
             </div>
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/killer7.webp" alt="">
                 <span>Caçadora</span>
             </div>
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/killer8.webp" alt="">
                 <span>Ghost Face</span>
             </div>
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/killer9.webp" alt="">
                 <span>Chucky</span>
             </div>
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/killer10.webp" alt="">
                 <span>Wesker</span>
             </div>
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/killer11.webp" alt="">
                 <span>Piramid Head</span>
             </div>
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/killer12.webp" alt="">
+                <span>Demogorgon</span>
+            </div>
+            <div class="card-personagem auto-show">
+                <img src="./Assets/killer13.webp" alt="">
+                <span>Pesadelo</span>
+            </div>
+            <div class="card-personagem auto-show">
+                <img src="./Assets/killer14.webp" alt="">
+                <span>Nêmesis</span>
+            </div>
+            <div class="card-personagem auto-show">
+                <img src="./Assets/killer15.webp" alt="">
+                <span>Os gêmeos</span>
+            </div>
+            <div class="card-personagem auto-show">
+                <img src="./Assets/killer16.webp" alt="">
+                <span>O cavaleiro</span>
+            </div>
+            <div class="card-personagem auto-show">
+                <img src="./Assets/killer17.webp" alt="">
+                <span>Flagelo</span>
+            </div>
+            <div class="card-personagem auto-show">
+                <img src="./Assets/killer18.webp" alt="">
+                <span>A draga</span>
+            </div>
+            <div class="card-personagem auto-show">
+                <img src="./Assets/killer19.webp" alt="">
+                <span>Demogorgon</span>
+            </div>
+            <div class="card-personagem auto-show">
+                <img src="./Assets/killer20.webp" alt="">
                 <span>Demogorgon</span>
             </div>
         </div>
 
         <!-- pt2 -->
         <div class="grid-imagens" style="display: none;" id="grid-sobreviventes">
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/surv1.webp" alt="">
                 <span>Dwight</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/surv2.webp" alt="">
                 <span>Meg</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/surv3.webp" alt="">
                 <span>Claudette</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/surv4.webp" alt="">
                 <span>Jake</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/surv5.webp" alt="">
                 <span>Feng min</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/surv6.webp" alt="">
                 <span>Leon</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/surv7.webp" alt="">
                 <span>Mikaela</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/surv8.webp" alt="">
                 <span>Cheryl Mason</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/surv9.webp" alt="">
                 <span>Ada Wong</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/surv10.webp" alt="">
                 <span>Sable Ward</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/surb11.webp" alt="">
                 <span>Alan Wake</span>
             </div>
 
-            <div class="card-personagem">
+            <div class="card-personagem auto-show">
                 <img src="./Assets/surv12.webp" alt="">
                 <span>Yun Jin Lee</span>
             </div>
