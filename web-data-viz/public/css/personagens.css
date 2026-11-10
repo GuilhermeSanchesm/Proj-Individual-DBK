@@ -132,7 +132,7 @@ nav .nav-selecionado {
 }
 
 .sobre-personagem {
-    height: 350px;
+    height: 370px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -144,7 +144,7 @@ nav .nav-selecionado {
 }
 
 .sobre-personagem img {
-    width: 300px;
+    width: 280px;
     height: auto;
     max-height: 250px;
     border-radius: 5px;
@@ -173,6 +173,7 @@ nav .nav-selecionado {
 
 .sobre-personagem .textos-sobre-personagem {
     padding: 20px;
+    line-height: 1.5;
 }
 
 .sobre-personagem .textos-sobre-personagem p {
