@@ -139,6 +139,7 @@ nav .nav-selecionado {
     text-align: left;
     padding: 10px 100px;
     max-width: 88%;
+    min-width: 88%;
     margin: 100px auto;
 }
 

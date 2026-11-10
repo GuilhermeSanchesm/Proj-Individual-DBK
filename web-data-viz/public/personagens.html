@@ -34,7 +34,7 @@
         </div>
 
         <div class="sobre-personagem">
-            <img src="./Assets/trappersobre.webp" alt="">
+            <img id="imagem-sobre" src="./Assets/trappersobre.webp" alt="">
             
             <div class="textos-sobre-personagem">
                 <h1 id="titulo-sobre">O TRAPPER</h1>
@@ -121,11 +121,11 @@
             </div>
             <div class="card-personagem auto-show">
                 <img src="./Assets/killer19.webp" alt="">
-                <span>Demogorgon</span>
+                <span>O Trickster</span>
             </div>
             <div class="card-personagem auto-show">
                 <img src="./Assets/killer20.webp" alt="">
-                <span>Demogorgon</span>
+                <span>O carniça</span>
             </div>
         </div>
 
@@ -194,15 +194,172 @@
 </body>
 
 <script>
-
-    function mostrar_sobreviventes() {
-        document.getElementById('grid-killers').style.display = 'none'
-        document.getElementById('grid-sobreviventes').style.display = 'grid'
+const listaKillers = [
+    {
+        nome: "O TRAPPER",
+        descricao: "Munido de um conjunto de Armadilhas para Ursos, O Trapper é especialista em capturar Sobreviventes desprevenidos.",
+        imagem: "./Assets/trappersobre.webp"
+    },
+    {
+        nome: "A BRUXA",
+        descricao: "A Bruxa é especialista em criar uma rede perigosa de Armadilhas de Fantasmas, feitas para serem acionadas por Sobreviventes desavisados. Ela pode se teletransportar instantaneamente para uma armadilha acionada, golpeando o Sobrevivente que a disparou. Controle áreas-chave, torne os resgates uma aposta mortal e encerre perseguições rapidamente por meio do posicionamento estratégico de suas Armadilhas de Fantasmas.",
+        imagem: "./Assets/sobre-bruxa.webp"
+    },
+    {
+        nome: "O SININHO",
+        descricao: "Usando seu Sino Lúgubre para se tornar invisível, o Espectro rastreia sua presa e ataca quase sem aviso. Ao ouvir o toque fatídico do sino, os Sobreviventes precisam pensar rápido, ou sofrerão as consequências. Especialista em táticas de ataque e fuga, o Espectro é perito em manter todos feridos.",
+        imagem: "./Assets/sobre-sininho.webp"
+    },
+    {
+        nome: "BILLY",
+        descricao: "O som de um motor sendo acelerado, seguido por um grito de fúria sanguinária. O Caipira não é exatamente sutil, mas compensa isso com uma eficiência brutal. Capaz de percorrer grandes distâncias em ritmo acelerado, aqueles que cruzarem seu caminho serão apresentados, de forma violenta, a uma motosserra de lâminas afiadas.",
+        imagem: "./Assets/sobre-billy.webp"
+    },
+    {
+        nome: "DOUTOR",
+        descricao: "Até as tarefas mais simples tornam-se extremamente difíceis nas garras da loucura. Os métodos perturbadores do Doutor levam os Sobreviventes a um estado de insanidade profunda, preenchendo o ar com seus gritos enlouquecidos e revelando suas localizações. Nada interrompe um salto por uma janela tão eficazmente quanto uma boa dose de Eletrochoque.",
+        imagem: "./Assets/sobre-doutor.webp"
+    },
+    {
+        nome: "CAÇADORA",
+        descricao: "Equipada com machadinhas arremessáveis, a Caçadora é uma ameaça constante para os Sobreviventes, mesmo para aqueles que estão a uma grande distância. Com paciência e precisão, as perseguições podem terminar tão rapidamente quanto começam. Antecipe o movimento dos Sobreviventes e lance sua machadinha — não há nada como o som gratificante de acertar o alvo.",
+        imagem: "./Assets/sobre-cacadora.webp"
+    },
+    {
+        nome: "CHUCKY",
+        descricao: "Cruel ao extremo e dotado de um senso de humor ácido, Chucky é uma máquina de matar brutalmente eficaz. Tirando proveito de seu porte diminuto, ele surge quando os Sobreviventes menos esperam, perseguindo-os e apresentando-os às suas fiéis armas.",
+        imagem: "./Assets/sobre-chucky.webp"
+    },
+    {
+        nome: "WESKER",
+        descricao: "Um visionário tão brilhante quanto implacável, Albert Wesker possui uma mente estratégica inigualável. Enquanto alguns planos exigem intelecto, outros pedem força bruta. Avance rapidamente para agarrar os Sobreviventes e presenteá-los com o Uroboros — um passo necessário no caminho para a evolução.",
+        imagem: "./Assets/sobre-wesker.webp"
+    },
+    {
+        nome: "PIRAMID HEAD",
+        descricao: "Implacável e impiedoso, O Carrasco traz sua própria forma de justiça distorcida para a Névoa, atormentando os Sobreviventes com perigos espalhados pelo mapa. Os ganchos são uma ferramenta eficaz, mas nada pune tanto quanto uma Jaula de Tormento. Toda esperança se esvai rapidamente no instante em que Pyramid Head ergue sua poderosa lâmina para aplicar o Julgamento Final.",
+        imagem: "./Assets/sobre-piramidhead.webp"
+    },
+    {
+        nome: "DEMOGORGON",
+        descricao: "Criatura de outra dimensão que cria portais para se locomover rapidamente.",
+        imagem: "./Assets/sobre-demogorgon.webp"
+    },
+    {
+        nome: "PESADELO",
+        descricao: "Arrasta os sobreviventes para o mundo dos sonhos, onde ele controla tudo.",
+        imagem: "./Assets/sobre-pesadelo.webp"
+    },
+    {
+        nome: "NÊMESIS",
+        descricao: "Uma arma biológica implacável que evolui e persegue sua presa sem trégua.",
+        imagem: "./Assets/sobre-nemesis.webp"
+    },
+    {
+        nome: "OS GÊMEOS",
+        descricao: "Uma dupla mortal que pode se separar para caçar em duas frentes diferentes.",
+        imagem: "./Assets/sobre-gemeos.webp"
+    },
+    {
+        nome: "O CAVALEIRO",
+        descricao: "Invoca companheiros leais para cercar e atacar os sobreviventes em equipe.",
+        imagem: "./Assets/sobre-cavaleiro.webp"
+    },
+    {
+        nome: "GHOST FACE",
+        descricao: "Mestre da furtividade e da espionagem, espreita suas vítimas antes do bote final.",
+        imagem: "./Assets/sobre-ghostface.webp"
+    },
+    {
+        nome: "FLAGELO",
+        descricao: "Usa ganchos especiais e correntes de sangue para torturar e controlar o mapa.",
+        imagem: "./Assets/sobre-flagelo.webp"
+    },
+    {
+        nome: "A DRAGA",
+        descricao: "Uma manifestação sombria que consome a luz e se esconde na escuridão total.",
+        imagem: "./Assets/sobre-draga.webp"
+    },
+    {
+        nome: "O TRICKSTER",
+        descricao: "Monstro aterrorizante focado em emboscadas ferozes através de portais.",
+        imagem: "./Assets/sobre-trickster.webp"
+    },
+    {
+        nome: "O CARNIÇA",
+        descricao: "Fera implacável pronta para devorar qualquer um que cruze seu caminho.",
+        imagem: "./Assets/sobre-carnica.webp"
     }
+];
+
+    const listaSobreviventes = [
+        {
+            nome: "DWIGHT",
+            descricao: "Frouxo, mas um líder nato quando se trata de encontrar armários para se esconder.",
+            imagem: "./Assets/surv1.webp"
+        },
+        {
+            nome: "MEG",
+            descricao: "Uma atleta nata que usa sua velocidade extrema para fugir dos assassinos.",
+            imagem: "./Assets/surv2.webp"
+        },
+        {
+            nome: "CLAUDETTE",
+            descricao: "Especialista em botânica, capaz de curar aliados rapidamente nas sombras.",
+            imagem: "./Assets/surv3.webp"
+        }
+    ];
+
+    let indiceAtual = 0;
+    let categoriaAtual = 'killers'; 
 
     function mostrar_killers() {
-        document.getElementById('grid-sobreviventes').style.display = 'none'
-        document.getElementById('grid-killers').style.display = 'grid'
+        categoriaAtual = 'killers';
+        indiceAtual = 0;
+
+        document.getElementById('grid-sobreviventes').style.display = 'none';
+        document.getElementById('grid-killers').style.display = 'grid';
+
+        document.getElementById('titulo-sobre').textContent = listaKillers[indiceAtual].nome;
+        document.getElementById('descricao-sobre').textContent = listaKillers[indiceAtual].descricao;
+        document.getElementById('imagem-sobre').src = listaKillers[indiceAtual].imagem;
+    }
+
+    function mostrar_sobreviventes() {
+        categoriaAtual = 'sobreviventes';
+        indiceAtual = 0; 
+
+        document.getElementById('grid-killers').style.display = 'none';
+        document.getElementById('grid-sobreviventes').style.display = 'grid';
+
+        document.getElementById('titulo-sobre').textContent = listaSobreviventes[indiceAtual].nome;
+        document.getElementById('descricao-sobre').textContent = listaSobreviventes[indiceAtual].descricao;
+        document.getElementById('imagem-sobre').src = listaSobreviventes[indiceAtual].imagem;
+    }
+
+    function passar() {
+        if (categoriaAtual === 'killers') {
+            indiceAtual++;
+            
+            if (indiceAtual >= listaKillers.length) {
+                indiceAtual = 0;
+            }
+
+            document.getElementById('titulo-sobre').textContent = listaKillers[indiceAtual].nome;
+            document.getElementById('descricao-sobre').textContent = listaKillers[indiceAtual].descricao;
+            document.getElementById('imagem-sobre').src = listaKillers[indiceAtual].imagem;
+
+        } else {
+            indiceAtual++;
+            
+            if (indiceAtual >= listaSobreviventes.length) {
+                indiceAtual = 0;
+            }
+
+            document.getElementById('titulo-sobre').textContent = listaSobreviventes[indiceAtual].nome;
+            document.getElementById('descricao-sobre').textContent = listaSobreviventes[indiceAtual].descricao;
+            document.getElementById('imagem-sobre').src = listaSobreviventes[indiceAtual].imagem;
+        }
     }
 </script>
 
