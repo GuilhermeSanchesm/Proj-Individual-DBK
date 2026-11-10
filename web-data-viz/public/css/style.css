@@ -3,11 +3,11 @@
 * {
     margin: 0;
     padding: 0;
-    scroll-behavior:smooth;
+    scroll-behavior: smooth;
 }
 
 .home {
-        background:
+    background:
         linear-gradient(to bottom, rgba(2, 2, 2, 0.967), rgba(0, 0, 0, 0.482)),
         url(../Assets/dbd.jpg);
     background-size: cover;
@@ -74,23 +74,26 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
-.home{
+.home {
     padding-top: 1px;
 }
+
 .home-texto {
-    display: flex;
+display: flex;
     flex-direction: column;
-    text-align: left;
+    align-items: center; 
+    text-align: center; 
     justify-content: center;
-    margin-top: 15%;
+    padding-top: 15%; 
 }
 
 .home .home-texto-principal {
     margin: 0 auto;
     display: flex;
+    text-align: left;
 }
 
-.home-texto-principal img{
+.home-texto-principal img {
     width: 280px;
     height: auto;
 }
@@ -101,9 +104,9 @@ nav ul li a:hover {
     font-family: "Inter", sans-serif;
 }
 
-.home .btn-home {
+.home .btn-home{
     align-self: center;
-    margin-top: 10%;
+    margin-top: 30%;
 }
 
 .historia {
@@ -137,6 +140,15 @@ nav ul li a:hover {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+}
+
+.conteudo-historia a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.conteudo-historia a:hover{
+    color: #AA1D32;
 }
 
 .titulo h2 {
@@ -261,11 +273,31 @@ nav ul li a:hover {
     margin: 8% 0 3% 10%;
 }
 
+.texto-jogabilidade {
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.4;
+    padding: 26px 20px;
+    margin-bottom: 30px;
+    background: linear-gradient(to bottom,
+            rgba(26, 42, 47, 1) 10%,
+            rgba(26, 42, 47, 0.6) 60%,
+            rgba(26, 42, 47, 0) 100%);
+}
+
+.jogabilidade-destaque{
+    border-bottom: 2px solid #AA1D32;
+    padding: 0;
+}
+
 .jogabilidade .conteudo-jogabilidade {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 0 5%;
+    padding: 0 3%;
     color: #ffff;
     font-family: "Roboto", sans-serif;
     font-size: 18px;
@@ -550,13 +582,13 @@ footer ul li a {
 .auto-show-texto {
     animation: auto-show-texto both;
     animation-timeline: view();
-    animation-range: entry 20% cover 50vh;
+    animation-range: entry 10% cover 50vh;
 }
 
 @keyframes auto-show-texto {
     from {
         opacity: 0.5;
-        transform: scale(1.02) translateX(-60px);
+        transform: scale(1.01) translateX(-100px);
     }
 
     to {
