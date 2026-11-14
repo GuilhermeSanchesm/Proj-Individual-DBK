@@ -23,6 +23,9 @@
         <a href="./login.html"><button class="btn">SAIR</button></a>
     </nav>
 
+    
+    <span id="explicacao-quiz"><h3>DESCOBRA SEU ESTILO DE JOGO!</h3> <br>
+    <p>Responda às perguntas e descubra se o seu estilo dominante é focado em escapar dos perigos como um <span class="destaque-explicacao">Sobrevivente</span>  ou em dominar uma perseguição como <span class="destaque-explicacao">Assassino</span>.</p></span>
     <div id="pontuacaoEJogo">
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
@@ -57,12 +60,19 @@
                     <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
                     <label for="quartaOpcao" class="option" id="labelOpcaoQuatro"></label>
                 </span>
+                <span>
+                    <input type="radio" id="quintaOpcao" name="option" class="radio" value="alternativaE" />
+                    <label for="quintaOpcao" class="option" id="labelOpcaoCinco"></label>
+                </span>
+                <span>
+                    <input type="radio" id="sextaOpcao" name="option" class="radio" value="alternativaF" />
+                    <label for="sextaOpcao" class="option" id="labelOpcaoSeis"></label>
+                </span>
             </div>
 
             <div id="botoes" class="flex-colunar padding-8">
                 <button onclick="submeter()" id="btnSubmeter">RESPONDER</button>
                 <button onclick="avancar()" id="btnProx" disabled>AVANÇAR</button>
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>TENTAR NOVAMENTE</button>
             </div>
 
         </div>
@@ -70,15 +80,20 @@
         <div id="pontuacao" class="flex-lado width-fit-content">
             <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
                 <h3>RESULTADO</h3>
-                <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas">0</span></span>
-                <span class="width-fit-content">Quantidade de erros: <span id="spanErradas">0</span></span>
+                <!-- <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas">0</span></span>
+                    <span class="width-fit-content">Quantidade de erros: <span id="spanErradas">0</span></span> -->
             </div>
             <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
-                <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                <span id="pontuacaoFinal" class="width-fit-content">Estilo de jogo dominante: <span
+                        id="estilo_jogo"></span>
                     <span id="spanPontuacaoFinal"></span>
                     <img id="img-resultado" src="./Assets/chucky.jpeg" alt="">
                 </span>
                 <span id="msgFinal" class="width-fit-content"></span>
+                <span id="descricao-estilo" class="width-fit-content"></span>
+            </div>
+            <div id="botoes" class="flex-colunar padding-8">
+                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>TENTAR NOVAMENTE</button>
             </div>
         </div>
     </div>
@@ -88,36 +103,57 @@
 <script>
     const listaDeQuestoes = [
         {
-            pergunta: "Qual é o objetivo principal dos Sobreviventes no Dead by Daylight?",
-            alternativaA: "Derrotar o assassino em combate",
-            alternativaB: "Reparar geradores e abrir os portões de saída",
-            alternativaC: "Proteger os ganchos da Entidade",
-            alternativaD: "Esconder-se até o tempo acabar",
-            alternativaCorreta: "alternativaB"
+            pergunta: "Em uma partida no Reino da Entidade, qual é a sua prioridade máxima nos primeiros minutos?",
+            alternativaA: "Correr para estruturas fortes e chamar a atenção do Assassino para iniciar uma caça prolongada.",
+            alternativaB: "Localizar o gerador mais próxima e focar 100% na reparação imediata.",
+            alternativaC: "Observar a movimentação dos aliados, buscando itens e preparando-se para curar ou dar cobertura.Proteger os ganchos da Entidade",
+            alternativaD: "Localizar o primeiro alvo, derrubá-lo e deixá-lo no chão para aplicar pressão imediata nos demais.",
+            alternativaE: "Encontrar um Sobrevivente e engajar na caça com foco total em derrubá-lo rapidamente usando habilidade pura.",
+            alternativaF: "Patrulhar e mapear os geradores mais próximos entre si para criar uma zona de defesa estratégica"
         },
         {
-            pergunta: "Quantos sobreviventes participam de uma partida padrão contra um assassino?",
-            alternativaA: "2 sobreviventes",
-            alternativaB: "3 sobreviventes",
-            alternativaC: "4 sobreviventes",
-            alternativaD: "5 sobreviventes",
-            alternativaCorreta: "alternativaC"
+            pergunta: "Quantos sobreviventes participam de uma partida padrQuando o ritmo do jogo esquenta e a pressão aumenta, como você reage?",
+            alternativaA: "Utilizo recursos com precisão para gastar o máximo de tempo do Assassino.",
+            alternativaB: "Mantenho a cabeça fria e continuo reparando o gerador até o fim, mesmo com o raio de terror próximo.",
+            alternativaC: "Corro diretamente para efetuar um resgate seguro no gancho ou fazer um bodyblock (bloqueio corporal) para salvar um aliado.",
+            alternativaD: "Mantenho múltiplos Sobreviventes feridos e caídos ao mesmo tempo no chão para interromper a progressão da partida.",
+            alternativaE: "Foco no jogador mais habilidoso do time adversário para provar superioridade técnica na caça.",
+            alternativaF: "Abandono perseguições longas e retorno imediatamente para chutar geradores com maior progresso."
         },
         {
-            pergunta: "Qual empresa desenvolveu e lançou o Dead by Daylight em 2016?",
-            alternativaA: "Behaviour Interactive",
-            alternativaB: "Capcom",
-            alternativaC: "Ubisoft",
-            alternativaD: "Valve",
-            alternativaCorreta: "alternativaA"
+            pergunta: "Ao montar o seu conjunto de vantagens (perks), qual tipo de efeito você considera indispensável?",
+            alternativaA: "Vantagens de exaustão e mobilidade para otimizar perseguições",
+            alternativaB: "Vantagens de aceleração de reparo e testes de perícia.",
+            alternativaC: "Vantagens de cura rápida, visão de aura de aliados e resgate.",
+            alternativaD: "Vantagens que dificultam a recuperação de caídos e revelam auras de alvos feridos",
+            alternativaE: "Vantagens que reduzem atordoamentos e quebram recursos rapidamente na caça.",
+            alternativaF: "Vantagens de regressão e bloqueio de geradores."
+        },
+        {
+            pergunta: "Para você, o que define uma partida perfeita e gratificante?",
+            alternativaA: "Fazer o Assassino perder vários geradores tentando te derrubar em uma única caça.",
+            alternativaB: "Finalizar os 5 geradores e abrir os portões de saída no menor tempo possível.",
+            alternativaC: "Garantir que todos os companheiros de equipe escapem vivos, mesmo que precise se sacrificar no final.",
+            alternativaD: "Encerrar a partida rapidamente com todos os alvos incapacitados no chão antes que consigam reparar os geradores.",
+            alternativaE: "Executar caças limpas com acertos rápidos de habilidade e hooks sequenciais.",
+            alternativaF: "Executar um plano tático tático impecável de controle de território e defesa dos geradores finais."
         }
     ]
 
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
     let tentativaIncorreta = 0
-    let certas = 0
-    let erradas = 0
+    // let certas = 0
+    // let erradas = 0
+
+    // Contadores de estilos de jogo
+    let perfilSurvLooper = 0
+    let perfilSurvGen = 0
+    let perfilSurvSup = 0
+    let perfilKillerChaser = 0
+    let perfilKillerTunneler = 0
+    let perfilKillerControlador = 0
+
     let quantidadeDeQuestoes = listaDeQuestoes.length
 
     function onloadEsconder() {
@@ -130,6 +166,7 @@
         document.getElementById('pontuacao').style.display = "none"
         document.getElementById('jogo').style.display = "flex"
         document.getElementById('btnIniciarQuiz').style.display = "none"
+        document.getElementById('explicacao-quiz').style.display = "none"
 
         document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
 
@@ -137,7 +174,7 @@
 
         btnSubmeter.disabled = false
         btnProx.disabled = true
-        btnTentarNovamente.disabled = true
+        btnTentarNovamente.disabled = false
     }
 
     function preencherHTMLcomQuestaoAtual(index) {
@@ -149,6 +186,9 @@
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
         document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
         document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+        document.getElementById("labelOpcaoCinco").innerHTML = questaoAtual.alternativaE;
+        document.getElementById("labelOpcaoSeis").innerHTML = questaoAtual.alternativaF;
+
     }
 
     function submeter() {
@@ -179,6 +219,8 @@
         segundaOpcao.disabled = opcaoEscolhida
         terceiraOpcao.disabled = opcaoEscolhida
         quartaOpcao.disabled = opcaoEscolhida
+        quintaOpcao.disabled = opcaoEscolhida
+        sextaOpcao.disabled = opcaoEscolhida
     }
 
     function avancar() {
@@ -204,34 +246,31 @@
     }
 
     function checarResposta() {
-        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
-        const respostaQuestaoAtual = questaoAtual.alternativaCorreta
         const options = document.getElementsByName("option");
 
-        let alternativaCorreta = null
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                if (options[i].value == "alternativaA") {
+                    perfilSurvLooper++;
+                }
+                else if (options[i].value == "alternativaB") {
+                    perfilSurvGen++;
+                }
+                else if (options[i].value == "alternativaC") {
+                    perfilSurvSup++;
+                }
+                else if (options[i].value == "alternativaD") {
+                    perfilKillerChaser++;
+                }
+                else if (options[i].value == "alternativaE") {
+                    perfilKillerTunneler++;
+                }
+                else if (options[i].value == "alternativaF") {
+                    perfilKillerControlador++;
+                }
 
-        options.forEach((option) => {
-            if (option.value === respostaQuestaoAtual) {
-                alternativaCorreta = option.labels[0].id
             }
-        })
-
-        options.forEach((option) => {
-            if (option.checked === true && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                pontuacaoFinal++
-                certas++
-                document.getElementById("spanCertas").innerHTML = certas
-            } else if (option.checked && option.value !== respostaQuestaoAtual) {
-                const wrongLabelId = option.labels[0].id
-
-                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
-                tentativaIncorreta++
-                erradas++
-                document.getElementById("spanErradas").innerHTML = erradas
-            }
-        })
+        }
     }
 
     function limparCoresBackgroundOpcoes() {
@@ -250,41 +289,86 @@
     }
 
     function finalizarJogo() {
-        let textoParaMensagemFinal = null
-        let classComCoresParaMensagemFinal = null
-        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+        let perfilDominante = perfilSurvGen;
+        let perfilFinal = 'Sobrevivente Gen Rush';
 
-        if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Parece que você não estudou..."
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
-            document.getElementById('img-resultado').src = "./Assets/erro-quiz.png";
+        if (perfilSurvLooper > perfilDominante) {
+            perfilDominante = perfilSurvLooper;
+            perfilFinal = 'Sobrevivente Looper';
         }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-            textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
-            document.getElementById('img-resultado').src = "./Assets/medio-quiz.png";
+        if (perfilSurvSup > perfilDominante) {
+            perfilDominante = perfilSurvSup;
+            perfilFinal = 'Sobrevivente Suporte';
         }
-        else if (porcentagemFinalDeAcertos >= 0.9) {
-            textoParaMensagemFinal = "Parece que você sobrevive bem na névoa. Parabéns!"
-            classComCoresParaMensagemFinal = "text-success-with-bg"
-            document.getElementById('img-resultado').src = "./Assets/acertou-quiz.png";
+        if (perfilKillerChaser > perfilDominante) {
+            perfilDominante = perfilKillerChaser;
+            perfilFinal = 'Killer Chaser';
+        }
+        if (perfilKillerTunneler > perfilDominante) {
+            perfilDominante = perfilKillerTunneler;
+            perfilFinal = 'Killer Tunneler';
+        }
+        if (perfilKillerControlador > perfilDominante) {
+            perfilDominante = perfilKillerControlador;
+            perfilFinal = 'Killer Controlador de mapa';
         }
 
-        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos) * 100) + "% das questões."
+        let textoParaMensagemFinal = "";
+        let classComCoresParaMensagemFinal = "";
+        let textoDescricaoEstilo = "";
 
-        document.getElementById('pontuacao').style.display = "flex"
-        document.getElementById('img-resultado').style.display = "grid"
-        document.getElementById('pontuacaoEJogo').style.gridTemplateColumns = '1fr 0.8fr';
+        if (perfilFinal == 'Sobrevivente Gen Rush') {
+            textoParaMensagemFinal = "Seu perfil de jogador é Gen Rush, voltado a fazer geradores!";
+            textoDescricaoEstilo = "Você prioriza exclusivamente o <b>reparo rápido dos geradores</b>, evitando perseguições e utilizando vantagens e itens voltados para acelerar os objetivos principais."
+            classComCoresParaMensagemFinal = "text-danger-with-bg";
+            document.getElementById('img-resultado').src = "./Assets/surv-genrush.png";
+        }
+        else if (perfilFinal == 'Sobrevivente Looper') {
+            textoParaMensagemFinal = "Seu perfil de jogador é Sobrevivente Looper, focado em distrair o assassino!";
+            textoDescricaoEstilo = "Você foca em <b>atrair a atenção do assassino e mantê-lo ocupado</b> em perseguições longas usando obstáculos do cenário, comprando tempo valioso para a equipe."
+            classComCoresParaMensagemFinal = "text-warning-with-bg";
+            document.getElementById('img-resultado').src = "./Assets/surv-looper.jpeg";
+        }
+        else if (perfilFinal == 'Sobrevivente Suporte') {
+            textoParaMensagemFinal = "Seu perfil de jogador é Sobrevivente Suporte, focado em curar e ajudar o time!";
+            textoDescricaoEstilo = "Você se dedica a <b>manter a equipe viva e funcional</b>, focando em curar aliados feridos, realizar resgates seguros nos ganchos, bloquear golpes e fornecer informações."
+            classComCoresParaMensagemFinal = "text-success-with-bg";
+            document.getElementById('img-resultado').src = "./Assets/surv-suporte.png";
 
-        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
-        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal)
-        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
+        } else if (perfilFinal == 'Killer Chaser') {
+            textoParaMensagemFinal = "Seu perfil é Killer Chaser, implacável nas perseguições!";
+            textoDescricaoEstilo = "Você foca em <b>encerrar perseguições o mais rápido possível</b>, utilizando poderes de mobilidade ou habilidades de combate direto para enganchar sobreviventes em ritmo acelerado."
+            classComCoresParaMensagemFinal = "text-danger-with-bg";
+            document.getElementById('img-resultado').src = "./Assets/killer-chaser.png";
 
-        document.getElementById('jogo').classList.add("text-new-gray")
+        }
+        else if (perfilFinal == 'Killer Tunneler') {
+            textoParaMensagemFinal = "Seu perfil é Killer Tunneler, focado em eliminar um alvo por vez!";
+            textoDescricaoEstilo = "Você concentra seus esforços em <b>perseguir e enganchar repetidamente um único sobrevivente </b>recém-resgatado, buscando eliminá-lo da partida rapidamente para reduzir a força de trabalho da equipe adversária."
+            classComCoresParaMensagemFinal = "text-danger-with-bg";
+            document.getElementById('img-resultado').src = "./Assets/killer-tuneller.png";
 
-        btnProx.disabled = true
-        btnSubmeter.disabled = true
-        btnTentarNovamente.disabled = false
+        }
+        else if (perfilFinal == 'Killer Controlador de mapa') {
+            textoParaMensagemFinal = "Seu perfil é Killer Controlador, dominando o território e os geradores!";
+            textoDescricaoEstilo = "Você prioriza a<b> defesa de áreas estratégicas e o atraso do progresso dos geradores</b>, aplicando regressão nos objetivos e mantendo uma zona de difícil acesso para os sobreviventes."
+            classComCoresParaMensagemFinal = "text-success-with-bg";
+            document.getElementById('img-resultado').src = "./Assets/killer-controlador.png";
+        }
+
+        document.getElementById('pontuacao').style.display = "flex";
+        document.getElementById('img-resultado').style.display = "grid";
+        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal;
+        document.getElementById('descricao-estilo').innerHTML = textoDescricaoEstilo;
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal);
+        document.getElementById('spanPontuacaoFinal').innerHTML = `<b>${perfilFinal}</b>`;
+        document.getElementById('jogo').style.display = 'none'
+
+        document.getElementById('jogo').classList.add("text-new-gray");
+
+        btnProx.disabled = true;
+        btnSubmeter.disabled = true;
+        btnTentarNovamente.disabled = false;
     }
 </script>
 
