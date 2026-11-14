@@ -8,7 +8,6 @@
 }
 
 body {
-    overflow: hidden;
     background:
         linear-gradient(to bottom, rgb(2, 2, 2), rgba(0, 0, 0, 0.758)),
         url(../Assets/artista.png);
@@ -61,6 +60,32 @@ nav .nav-selecionado {
     border-bottom: 3px solid #AA1D32;
 }
 
+#explicacao-quiz {
+    text-align: center;
+    font-weight: normal;
+}
+
+#explicacao-quiz h3 {
+    margin-top: 10%;
+    font-size: 24px;
+}
+
+#explicacao-quiz .destaque-explicacao{
+    border-bottom: 2px solid #AA1D32;
+    font-weight: bold;
+}
+
+#explicacao-quiz p {
+    max-width: 35%;
+    margin: 0 auto;
+    width: 50%;
+    border-radius: 5px;
+    padding: 25px 20px;
+    line-height: 1.6;
+    box-shadow: 0px 4px 20px rgba(1, 0, 2, 0.8);
+
+}
+
 .btn {
     color: #ffff;
     font-weight: bolder;
@@ -100,7 +125,7 @@ nav .nav-selecionado {
     width: 220px;
     height: 55px;
     cursor: pointer;
-    margin-top: 15vh;
+    margin-top: 3vh;
     transition: 0.3s;
 }
 
@@ -109,37 +134,45 @@ nav .nav-selecionado {
 }
 
 #pontuacao {
-    padding: 15px 30px;
+    padding: 35px 50px;
     border-radius: 6px;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
     text-align: left;
-    box-shadow: 0px 4px 20px rgba(1, 0, 2   , 0.8);
-    height: 600px;
+    box-shadow: 0px 4px 20px rgba(1, 0, 2, 0.8);
     color: #ffff;
     text-align: center;
     font-family: "Roboto", sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: lighter;
 }
 
 #jogo {
     padding: 25px 40px;
     border-radius: 8px;
-    width: 600px;
-    max-width: 90%;
+    min-width: 1000px;
+    min-height: 80vh;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.8);
 }
 
+#descricao-estilo {
+    width: 50%;
+    margin: 50px auto;
+    border-left: 5px #AA1D32 solid;
+    background-color: #0303035f;
+    padding: 25px 15px;
+
+}
+
 #infoQuestao {
-    font-size: 14px;
+    font-size: 12px;
     color: #b5b5b5;
     margin-bottom: 10px;
 }
 
 #perguntaDaQuestaoAtual {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     margin-bottom: 20px;
     color: #ffffff;
@@ -149,8 +182,8 @@ nav .nav-selecionado {
     color: #ffff;
     text-align: center;
     font-family: "Roboto", sans-serif;
-    font-size: 20px;
-    padding: 20px;
+    font-size: 18px;
+    padding: 14px;
     font-weight: lighter;
 }
 
@@ -158,8 +191,8 @@ nav .nav-selecionado {
 #opcoes {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 25px;
+    gap: 10px;
+    margin-bottom: 22px;
 }
 
 #opcoes span {
@@ -173,26 +206,28 @@ nav .nav-selecionado {
 }
 
 #opcoes span:hover {
-background: linear-gradient(to right, rgba(170, 29, 50, 0.2), rgba(170, 29, 50, 0.06));
+    background: linear-gradient(to right, rgba(170, 29, 50, 0.2), rgba(170, 29, 50, 0.06));
 }
 
-#pontuacaoDuranteJogo h3{
+#pontuacaoDuranteJogo h3 {
     padding: 20px 0px;
 }
 
-#img-resultado{
-    width: 400px;
+#img-resultado {
+    width: 430px;
     height: auto;
     margin: 30px auto;
     border-radius: 6px;
-    box-shadow: 0px 4px 20px rgba(1, 0, 2   , 0.8);
+    box-shadow: 0px 4px 20px rgba(1, 0, 2, 0.8);
 
 }
 
-#msgFinal{
+#msgFinal {
     color: #fff;
-    text-align: center; 
+    text-align: center;
     padding: 8px 0px;
+    max-width: 60%;
+    margin: 0 auto;
     color: #ffff;
     font-weight: bolder;
     font-size: 18px;
@@ -206,7 +241,7 @@ background: linear-gradient(to right, rgba(170, 29, 50, 0.2), rgba(170, 29, 50, 
     border-radius: 0px;
 }
 
-#msgFinal span{
+#msgFinal span {
     color: #fff;
     text-align: center;
     background-color: #AA1D32;
@@ -236,11 +271,17 @@ background: linear-gradient(to right, rgba(170, 29, 50, 0.2), rgba(170, 29, 50, 
     border: none;
     padding: 12px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     border-radius: 2px;
     transition: 0.3s;
+    margin: 0 auto;
+    width: 50%;
     font-family: "Inter", sans-serif;
+}
+
+#botoes button:hover {
+    background-color: #8a1628;
 }
 
 .flex-colunar {
@@ -258,26 +299,4 @@ background: linear-gradient(to right, rgba(170, 29, 50, 0.2), rgba(170, 29, 50, 
 
 .text-bold {
     font-weight: bold;
-}
-
-.text-success-with-bg {
-    color: #2ecc71;
-    padding: 4px 8px;
-    border-radius: 4px;
-}
-
-.text-warning-with-bg {
-    color: #f1c40f;
-    padding: 4px 8px;
-    border-radius: 4px;
-}
-
-.text-danger-with-bg {
-    color: #e74c3c;
-    padding: 4px 8px;
-    border-radius: 4px;
-}
-
-.text-new-gray {
-    color: #888888;
 }
