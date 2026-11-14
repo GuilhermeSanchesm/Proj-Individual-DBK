@@ -108,6 +108,10 @@ nav ul li a:hover {
     margin-top: 15%;
 }
 
+.home-texto a{
+    text-decoration: none;
+}
+
 .home .home-texto-principal {
     margin: 0 auto;
 }
