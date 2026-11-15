@@ -79,12 +79,12 @@ nav ul li a:hover {
 }
 
 .home-texto {
-display: flex;
+    display: flex;
     flex-direction: column;
-    align-items: center; 
-    text-align: center; 
+    align-items: center;
+    text-align: center;
     justify-content: center;
-    padding-top: 15%; 
+    padding-top: 15%;
 }
 
 .home .home-texto-principal {
@@ -104,7 +104,7 @@ display: flex;
     font-family: "Inter", sans-serif;
 }
 
-.home .btn-home{
+.home .btn-home {
     align-self: center;
     margin-top: 30%;
 }
@@ -142,12 +142,12 @@ display: flex;
     gap: 20px;
 }
 
-.conteudo-historia a{
+.conteudo-historia a {
     text-decoration: none;
     color: #ffffff;
 }
 
-.conteudo-historia a:hover{
+.conteudo-historia a:hover {
     color: #AA1D32;
 }
 
@@ -288,7 +288,7 @@ display: flex;
             rgba(26, 42, 47, 0) 100%);
 }
 
-.jogabilidade-destaque{
+.jogabilidade-destaque {
     border-bottom: 2px solid #AA1D32;
     padding: 0;
 }
@@ -497,6 +497,89 @@ display: flex;
     display: block;
 }
 
+.sobre-projeto {
+background:
+        linear-gradient(to bottom, rgba(2, 2, 2, 0.967), rgba(0, 0, 0, 0.89)),
+        url(../Assets/nevoa2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; 
+    align-items: start;
+    align-content: center; 
+    padding: 0 5%; 
+    gap: 100px;
+}
+
+.sobre-projeto-texto p {
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 20px 0px;
+}
+
+.sobre-projeto-texto h2 {
+    margin-top: 0;
+    margin-bottom: 100px;
+}
+
+.texto-sobre-projeto{
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px 20px 25px 20px;
+    margin-bottom: 70px;
+    background: linear-gradient(to bottom,
+            rgba(26, 42, 47, 1) 15%,
+            rgba(26, 42, 47, 0.6) 40%,
+            rgba(26, 42, 47, 0) 90%);
+}
+
+
+.sobre-projeto-foto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 380px 250px;
+    gap: 15px;
+    justify-content: center;
+    align-content: center;
+}
+
+.sobre-projeto-foto .img-formatura {
+    grid-column: span 2; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-right: 3px solid #AA1D32;
+    border-left: 3px solid #AA1D32;
+    border-radius: 5px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.sobre-projeto-foto .img-trote {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-bottom: 3px solid #AA1D32;
+    border-top: 3px solid #AA1D32;
+    border-radius: 5px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.sobre-projeto-foto .img-formatura2 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-bottom: 3px solid #AA1D32;
+    border-top: 3px solid #AA1D32;
+    border-radius: 5px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
 .convite {
     display: flex;
     flex-direction: column;
@@ -522,6 +605,13 @@ footer nav {
     padding: 20px 60px;
     box-sizing: border-box;
     position: absolute;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+}
+
+footer nav p{
+    color: #ffffffce;
+    font-weight: lighter;
 }
 
 footer img {
@@ -535,8 +625,7 @@ footer ul {
     gap: 70px;
 }
 
-footer ul li a {
-    color: #ffffff;
+footer a {
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
@@ -630,5 +719,23 @@ footer ul li a {
     to {
         opacity: 1;
         transform: translateX(0);
+    }
+}
+
+.auto-show-sobre {
+    animation: auto-show both;
+    animation-timeline: view();
+    animation-range: entry 10% 60vh;
+}
+
+@keyframes auto-show {
+    from {
+        opacity: 0.3;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
