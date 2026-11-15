@@ -11,4 +11,8 @@ router.get("/listar", function (req, res) {
     quizController.listar(req, res);
 });
 
+router.put("/atualizarPerfil", function (req, res) {
+    quizController.atualizarPerfil(req, res);
+});
+
 module.exports = router;

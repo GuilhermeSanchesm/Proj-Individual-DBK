@@ -23,9 +23,13 @@
         <a href="./login.html"><button class="btn">SAIR</button></a>
     </nav>
 
-    
-    <span id="explicacao-quiz"><h3>DESCOBRA SEU ESTILO DE JOGO!</h3> <br>
-    <p>Responda às perguntas e descubra se o seu estilo dominante é focado em escapar dos perigos como um <span class="destaque-explicacao">Sobrevivente</span>  ou em dominar uma perseguição como <span class="destaque-explicacao">Assassino</span>.</p></span>
+
+    <span id="explicacao-quiz">
+        <h3>DESCOBRA SEU ESTILO DE JOGO!</h3> <br>
+        <p>Responda às perguntas e descubra se o seu estilo dominante é focado em escapar dos perigos como um <span
+                class="destaque-explicacao">Sobrevivente</span> ou em dominar uma perseguição como <span
+                class="destaque-explicacao">Assassino</span>.</p>
+    </span>
     <div id="pontuacaoEJogo">
         <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
 
@@ -238,28 +242,48 @@
         if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
-            finalizarJogo()
-            
+            finalizarJogo();
+
             fetch("/quiz/cadastrar", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        idUsuarioServer: sessionStorage.ID_USUARIO,
-        survLooperServer: perfilSurvLooper,
-        survGenRushServer: perfilSurvGen,
-        survSuportServer: perfilSurvSup,
-        killerTunnelerServer: perfilKillerTunneler,
-        killerChaserServer: perfilKillerChaser,
-        killerControladorServer: perfilKillerControlador,
-        fkPerfilDominanteServer: fkPerfilDominante 
-    })
-}).then(function (resposta) {
-    if (resposta.ok) {
-        console.log("Quiz cadastrado com sucesso!");
-    }
-});
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    idUsuarioServer: sessionStorage.ID_USUARIO,
+                    survLooperServer: perfilSurvLooper,
+                    survGenRushServer: perfilSurvGen,
+                    survSuportServer: perfilSurvSup,
+                    killerTunnelerServer: perfilKillerTunneler,
+                    killerChaserServer: perfilKillerChaser,
+                    killerControladorServer: perfilKillerControlador,
+                    fkPerfilDominanteServer: fkPerfilDominante
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    console.log("Quiz cadastrado com sucesso!");
+
+                    fetch("/quiz/atualizarPerfil", { 
+                        method: "PUT", 
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            idUsuarioServer: sessionStorage.ID_USUARIO,
+                            fkPerfilDominanteServer: fkPerfilDominante
+                        })
+                    }).then(function (respostaPerfil) {
+                        if (respostaPerfil.ok) {
+                            console.log("Perfil atualizado com sucesso!");
+                        } else {
+                            console.log("Houve um erro ao tentar atualizar o perfil!");
+                        }
+                    });
+
+                } else {
+                    console.log("Houve um erro ao tentar cadastrar o quiz!");
+                }
+            });
         }
     }
 
@@ -313,33 +337,33 @@
     function finalizarJogo() {
         let perfilDominante = perfilSurvGen;
         let perfilFinal = 'Sobrevivente Gen Rush';
-        fkPerfilDominante = 2; 
+        fkPerfilDominante = 2;
 
         if (perfilSurvLooper > perfilDominante) {
             perfilDominante = perfilSurvLooper;
             perfilFinal = 'Sobrevivente Looper';
-            fkPerfilDominante = 1; 
+            fkPerfilDominante = 1;
 
         }
         if (perfilSurvSup > perfilDominante) {
             perfilDominante = perfilSurvSup;
             perfilFinal = 'Sobrevivente Suporte';
-            fkPerfilDominante = 3; 
+            fkPerfilDominante = 3;
         }
         if (perfilKillerChaser > perfilDominante) {
             perfilDominante = perfilKillerChaser;
             perfilFinal = 'Killer Chaser';
-            fkPerfilDominante = 4; 
+            fkPerfilDominante = 4;
         }
         if (perfilKillerTunneler > perfilDominante) {
             perfilDominante = perfilKillerTunneler;
             perfilFinal = 'Killer Tunneler';
-            fkPerfilDominante = 5; 
+            fkPerfilDominante = 5;
         }
         if (perfilKillerControlador > perfilDominante) {
             perfilDominante = perfilKillerControlador;
             perfilFinal = 'Killer Controlador de mapa';
-            fkPerfilDominante = 6; 
+            fkPerfilDominante = 6;
         }
 
         let textoParaMensagemFinal = "";

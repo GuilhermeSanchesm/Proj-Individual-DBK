@@ -14,6 +14,19 @@ function cadastrar(alternativaA, alternativaB, alternativaC, alternativaD,
     return database.executar(instrucaoSql);
 }
 
+function atualizarPerfil(fkPerfilDominante, idUsuario) {
+        
+    var instrucaoSql = `
+        UPDATE usuario 
+        SET fk_perfil_dominante = ${fkPerfilDominante} 
+        WHERE id_usuario = ${idUsuario};
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
+    atualizarPerfil,
     cadastrar
 };
