@@ -103,6 +103,12 @@ nav .nav-selecionado {
     font-size: 16px;
 }
 
+#perfil-predominante{
+    font-size: 20px;
+    padding: 5px 0px 10px 0px;
+    color: #f34b64;
+}
+
 .graficos{
     display: grid;
     grid-template-columns: 1.2fr 0.9fr 0.9fr;
