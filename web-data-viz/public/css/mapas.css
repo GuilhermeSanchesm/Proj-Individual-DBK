@@ -11,6 +11,14 @@ body {
     overflow: hidden;
 }
 
+.saudacao-user{
+    color: #fff;
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    border-bottom: 3px solid #AA1D32;
+}
+
 .home {
     background:
         linear-gradient(to bottom, rgb(2, 2, 2), rgba(0, 0, 0, 0.877)),

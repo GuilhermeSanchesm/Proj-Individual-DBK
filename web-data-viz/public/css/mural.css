@@ -54,6 +54,14 @@ nav ul li a:hover {
     border-bottom: 3px solid #AA1D32;
 }
 
+.saudacao-user{
+    color: #fff;
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    border-bottom: 3px solid #AA1D32;
+}
+
 .btn {
     color: #ffff;
     font-weight: bolder;
