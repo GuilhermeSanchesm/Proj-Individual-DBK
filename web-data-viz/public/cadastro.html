@@ -129,6 +129,7 @@
                 mensagem_cadastro.innerHTML = `<p style="color: #be2424; margin-top: 10px; font-weight: 600;">Sua senha atual é muito fraca. Crie outra!</p>`;
                 return false;
             }
+            
 
             fetch("/usuarios/cadastrar", {
                 method: "POST",
