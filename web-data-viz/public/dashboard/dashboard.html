@@ -10,18 +10,17 @@
 
 <body>
     <nav>
-        <img src="../Assets/Deadbydaylightmodernlogo.png" alt="Logo Dead by Daylight">
+        <span class="saudacao-user"><span id="nome_usuario"></span></span>
         <ul>
             <li><a href="../mural.html">INICIO</a></li>
             <li><a href="../personagens.html">PERSONAGENS</a></li>
             <li><a href="../mapas.html">MAPAS</a></li>
             <li><a href="../quiz.html">QUIZ</a></li>
-            <li><a href="#" class="nav-selecionado">DASHBOARD</a></li>
-            <li><a href="#">PERFIL</a></li>
+            <li><a href="./dashboard/dashboard.html">DASHBOARD</a></li>
         </ul>
-        <a href="../login.html"><button class="btn">SAIR</button></a>
+        <a href="./login.html"><button class="btn">SAIR</button></a>
     </nav>
-
+    <h1>ANÁLISE DE PERFIL DE JOGADOR</h1>
     <section class="cards">
         <div class="card">
             <h3>PERFIL PREDOMINANTE DO USUÁRIO</h3>
@@ -42,27 +41,27 @@
     <section class="graficos">
 
         <div class="grafico-radar">
-          <h3>RADAR DE ESTILOS DE JOGO DO USUÁRIO</h3>
-          <p class="sub">Sua afinidade e proximidade com cada estilo</p>
-          <div class="area-grafico">
-            <canvas id="grafico-radar"></canvas>
-          </div>
+            <h3>RADAR DE ESTILOS DE JOGO DO USUÁRIO</h3>
+            <p class="sub">Sua afinidade e proximidade com cada estilo</p>
+            <div class="area-grafico">
+                <canvas id="grafico-radar"></canvas>
+            </div>
         </div>
 
-         <div class="grafico-estilos">
-          <h3>RANKING DOS ESTILOS DE JOGO UTILIZADOS</h3>
-          <p class="sub">Popularidade global dos estilos entre todos os jogadores</p>
-          <div class="area-grafico">
-            <canvas id="ranking-estilos"></canvas>
-          </div>
+        <div class="grafico-estilos">
+            <h3>RANKING DOS ESTILOS DE JOGO UTILIZADOS</h3>
+            <p class="sub">Popularidade global dos estilos entre todos os jogadores</p>
+            <div class="area-grafico">
+                <canvas id="ranking-estilos"></canvas>
+            </div>
         </div>
 
-         <div class="grafico-proporcao">
-          <h3>COMPARARAÇÃO ENTRE ASSASSINO E SOBREVIVENTE</h3>
-          <p class="sub">Visão geral dos lados da comunidade</p>
-          <div class="area-grafico">
-            <canvas id="distribuicao-rosca"></canvas>
-          </div>
+        <div class="grafico-proporcao">
+            <h3>COMPARAÇÃO ENTRE ASSASSINO E SOBREVIVENTE</h3>
+            <p class="sub">Visão geral dos lados da comunidade</p>
+            <div class="area-grafico">
+                <canvas id="distribuicao-rosca"></canvas>
+            </div>
         </div>
 
 
@@ -77,157 +76,27 @@
 </body>
 
 <script>
-
-new Chart(document.getElementById('grafico-radar'), {
-    type: 'radar',
-    data: {
-        labels: [
-            'Slugger', 
-            'Tunneler', 
-            'Controlador de mapa', 
-            'Looper', 
-            'Gen Rush', 
-            'Suport'
-        ],
-        datasets: [{
-            label: 'Sobrevivente',
-            data: [0, 0, 0, 8, 8, 9],
-            fill: true,
-            backgroundColor: 'rgba(54, 162, 235, 0.4)',
-            borderColor: '#2f82cf',
-            borderWidth: 1,
-            pointBackgroundColor: 'rgb(54, 162, 235)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(54, 162, 235)'
-        }, {
-            label: 'Assassino',
-            data: [4, 4, 4, 0, 0, 0],
-            fill: true,
-            backgroundColor: 'rgba(166, 42, 42, 0.6)', 
-            borderColor: '#ce4d4d',
-            borderWidth: 1,
-            pointBackgroundColor: 'rgb(255, 99, 132)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                display: true,
-                position: 'bottom',
-                labels: {
-                    color: '#fff'
-                }
-            },
-            datalabels: {
-                display: false 
-            }
-        },
-        scales: {
-            r: {
-                angleLines: {
-                    display: true,
-                    color: 'rgba(255, 255, 255, 0.2)'
-                },
-                grid: {
-                    color: 'rgba(255, 255, 255, 0.15)'
-                },
-                ticks: {
-                    display: false,
-                    color: '#fff',
-                    backdropColor: 'transparent'
-                },
-                suggestedMin: 0,
-                suggestedMax: 10 
-            }
-        }
+      const nomeDoUsuario = sessionStorage.NOME_USUARIO;
+    if (nomeDoUsuario) {
+        document.getElementById('nome_usuario').textContent = nomeDoUsuario.toUpperCase();
+    } else {
+        document.getElementById('nome_usuario').textContent = 'Visitante';
     }
-});
+    
+    window.onload = function () {
+        obterKPIPerfilPredominante();
+        obterKPILadoAfinidade();
+        obterDadosGraficoRadar();
+        obterDadosGraficoBarra();
+        obterDadosGraficoRosca();
+    };
 
-    new Chart(document.getElementById('ranking-estilos'), {
-        type: 'bar',
-        data: {
-            labels: ['Gen Rush', 'Looper', 'Suporte', 'Chaser', 'Tunneler', 'Controlador'],
-            datasets: [{
-                label: 'Pontuação dos Estilos',
-                data: [10, 30, 20, 4, 10, 23], 
-                backgroundColor: '#AA1D32',
-                borderRadius: 3
-            },
-        ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            layout: { padding: { top: 20 } },
-            plugins: {
-                legend: { display: false },
-                datalabels: {
-                    anchor: 'end',
-                    align: 'end',
-                    color: '#fff', 
-                    font: { size: 11, weight: 'bold' },
-                    formatter: (valor) => valor
-                }
-            },
-            scales: {
-                x: {
-                    grid: { display: false }
-                },
-                y: { 
-                    display: false,  
-                }
-            }
-        },
-        plugins: [ChartDataLabels]
-    });
 
-    new Chart(document.getElementById('distribuicao-rosca'), {
-        type: 'doughnut', 
-        data: {
-            labels: ['Sobrevivente', 'Assassino'],
-            datasets: [{
-                label: 'Proporção de Partidas',
-                data: [60, 40], 
-                backgroundColor: [
-                    '#2f82cf',
-                    '#a62a2a' 
-                ],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'bottom' 
-                },
-                datalabels: {
-                    display: true,
-                    color: '#fff',
-                    font: { weight: 'bold' },
-                    formatter: (value) => value + '%' 
-                }
-            }
-        }
-    });
-     window.onload = obterPerfilPredominante();
-     window.onload = obterLadoAfinidade();
-     
-      function obterPerfilPredominante(idUsuario) {
-            var idUsuario = sessionStorage.ID_USUARIO;
+    //  KPIS
+    // Função para obter o perfil do usuário
+    function obterKPIPerfilPredominante(idUsuario) {
+        var idUsuario = sessionStorage.ID_USUARIO;
 
-        // if (proximaAtualizacao != undefined) {
-        //     clearTimeout(proximaAtualizacao);
-        // }
-
-      
 
         fetch(`/kpis/perfilDominante/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
@@ -250,12 +119,9 @@ new Chart(document.getElementById('grafico-radar'), {
             });
     }
 
-    function obterLadoAfinidade(idUsuario) {
-            var idUsuario = sessionStorage.ID_USUARIO;
-
-        // if (proximaAtualizacao != undefined) {
-        //     clearTimeout(proximaAtualizacao);
-        // }
+    // Função para obter o lado de afinidade do usuário
+    function obterKPILadoAfinidade(idUsuario) {
+        var idUsuario = sessionStorage.ID_USUARIO;
 
         fetch(`/kpis/ladoAfinidade/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
@@ -274,47 +140,75 @@ new Chart(document.getElementById('grafico-radar'), {
             }
         })
             .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                console.error(`Erro na obtenção dos dados p/ KPI: ${error.message}`);
             });
     }
-        // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idUsuario) {
 
-        console.log('iniciando plotagem do gráfico...');
+    // GRÁFICO RADAR
+    // Função para obter os dados do gráfico de RADAR para o estilo do usuário
+    function obterDadosGraficoRadar(idUsuario) {
+        var idUsuario = sessionStorage.ID_USUARIO
+
+        // }
+
+        fetch(`/usuarioEstilo/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoRadar(resposta, idUsuario);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico Estilo Usuário: ${error.message}`);
+            });
+    }
+
+    function plotarGraficoRadar(resposta, idUsuario) {
+
+        console.log('iniciando plotagem do gráfico de radar...');
 
         // Criando estrutura para plotar gráfico - labels
         let labels = [];
 
         // Criando estrutura para plotar gráfico - dados
         let dados = {
-            labels: labels,
-            datasets: [
-            {
-                label: 'Temperatura',
-                data: [],
-                fill: false,
-                borderColor: 'rgb(199, 52, 52)',
-                tension: 0.1
-            }]
+            labels: labels
         };
 
         console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGraficoRadar":')
         console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.temperatura);
-        }
+        var registro = resposta[0]
+
+        var dadosSobrevivente = [
+            0,
+            0,
+            0,
+            Number(registro.A),
+            Number(registro.B),
+            Number(registro.C)
+        ];
+
+        var dadosAssassino = [
+            Number(registro.D),
+            Number(registro.E),
+            Number(registro.F),
+            0,
+            0,
+            0
+        ];
 
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
         console.log('Labels:')
-        console.log(labels)
         console.log('Dados:')
         console.log(dados.datasets)
         console.log('----------------------------------------------')
@@ -326,12 +220,215 @@ new Chart(document.getElementById('grafico-radar'), {
         };
 
         // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idUsuario}`),
-            config
-        );
+        let myChart = new Chart(document.getElementById('grafico-radar'), {
+            type: 'radar',
+            data: {
+                labels: [
+                    'Chaser',
+                    'Tunneler',
+                    'Controlador de mapa',
+                    'Looper',
+                    'Gen Rush',
+                    'Suporte'
+                ],
+                datasets: [{
+                    label: 'Sobrevivente',
+                    data: dadosSobrevivente,
+                    fill: true,
+                    backgroundColor: 'rgba(54, 162, 235, 0.4)',
+                    borderColor: '#2f82cf',
+                    borderWidth: 1,
+                    pointBackgroundColor: 'rgb(54, 162, 235)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(54, 162, 235)'
+                }, {
+                    label: 'Assassino',
+                    data: dadosAssassino,
+                    fill: true,
+                    backgroundColor: 'rgba(166, 42, 42, 0.6)',
+                    borderColor: '#ce4d4d',
+                    borderWidth: 1,
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            color: '#fff'
+                        }
+                    },
+                    datalabels: {
+                        display: false
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true,
+                            color: 'rgba(255, 255, 255, 0.2)'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.15)'
+                        },
+                        ticks: {
+                            display: false,
+                            color: '#fff',
+                            backdropColor: 'transparent'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                }
+            }
+        });
 
-        // setTimeout(() => atualizarGrafico(idUsuario, dados, myChart), 2000);
+    }
+
+
+    // GRÁFICO DE BARRA
+    // Função para obter os dados do gráfico de RADAR para o estilo do usuário
+    function obterDadosGraficoBarra(idUsuario) {
+
+        fetch(`/estiloComunidade/rankingEstilos`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoBarra(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico Barra: ${error.message}`);
+            });
+    }
+
+    function plotarGraficoBarra(resposta) {
+
+        console.log('iniciando plotagem do gráfico de barras...');
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGraficoBarra":')
+        console.log(resposta)
+        console.log('----------------------------------------------')
+
+        var registro = resposta[0]
+
+        const config = new Chart(document.getElementById('ranking-estilos'), {
+            type: 'bar',
+            data: {
+                labels: ['Looper', 'Gen Rush', 'Suporte', 'Chaser', 'Tunneler', 'Controlador'],
+                datasets: [{
+                    label: 'Pontuação dos Estilos',
+                    data: [registro.A, registro.B, registro.C, registro.D, registro.E, registro.F],
+                    backgroundColor: '#AA1D32',
+                    borderRadius: 3
+                },
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: { padding: { top: 20 } },
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        color: '#fff',
+                        font: { size: 11, weight: 'bold' },
+                        formatter: (valor) => valor
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false }
+                    },
+                    y: {
+                        display: false,
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+    }
+
+    // GRÁFICO DE ROSCA
+    function obterDadosGraficoRosca() {
+
+        fetch(`/estiloComunidade/comparacaoAfinidade`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoRosca(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico de Rosca: ${error.message}`);
+            });
+    }
+
+    function plotarGraficoRosca(resposta) {
+
+        console.log('iniciando plotagem do gráfico de barras...');
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGraficoRosca":')
+        console.log(resposta)
+        console.log('----------------------------------------------')
+
+        var registro = resposta[0]
+        console.log(registro)
+
+        const config = new Chart(document.getElementById('distribuicao-rosca'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Sobrevivente', 'Assassino'],
+                datasets: [{
+                    label: 'Proporção de Partidas',
+                    data: [registro.Assassinos, registro.Sobreviventes],
+                    backgroundColor: [
+                        '#2f82cf',
+                        '#a62a2a'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    },
+                    datalabels: {
+                        display: true,
+                        color: '#fff',
+                        font: { weight: 'bold' },
+                        formatter: (value) => value + '%'
+                    }
+                }
+            }
+        });
     }
 
 </script>

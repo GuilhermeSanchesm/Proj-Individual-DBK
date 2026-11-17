@@ -11,14 +11,13 @@
 <body onload="onloadEsconder()">
 
     <nav>
-        <img src="./Assets/Deadbydaylightmodernlogo.png" alt="Logo Dead by Daylight">
+        <span class="saudacao-user"><span id="nome_usuario"></span></span>
         <ul>
             <li><a href="./mural.html">INICIO</a></li>
             <li><a href="./personagens.html">PERSONAGENS</a></li>
             <li><a href="./mapas.html">MAPAS</a></li>
-            <li><a class="nav-selecionado" href="#">QUIZ</a></li>
-            <li><a href="#">DASHBOARD</a></li>
-            <li><a href="#">PERFIL</a></li>
+            <li><a href="./quiz.html">QUIZ</a></li>
+            <li><a href="./dashboard/dashboard.html">DASHBOARD</a></li>
         </ul>
         <a href="./login.html"><button class="btn">SAIR</button></a>
     </nav>
@@ -263,8 +262,8 @@
                 if (resposta.ok) {
                     console.log("Quiz cadastrado com sucesso!");
 
-                    fetch("/quiz/atualizarPerfil", { 
-                        method: "PUT", 
+                    fetch("/quiz/atualizarPerfil", {
+                        method: "PUT",
                         headers: {
                             "Content-Type": "application/json"
                         },
@@ -422,6 +421,12 @@
         btnProx.disabled = true;
         btnSubmeter.disabled = true;
         btnTentarNovamente.disabled = false;
+    }
+      const nomeDoUsuario = sessionStorage.NOME_USUARIO;
+    if (nomeDoUsuario) {
+        document.getElementById('nome_usuario').textContent = nomeDoUsuario.toUpperCase();
+    } else {
+        document.getElementById('nome_usuario').textContent = 'Visitante';
     }
 
 </script>
