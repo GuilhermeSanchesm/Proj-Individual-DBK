@@ -24,15 +24,15 @@
     <section class="cards">
         <div class="card">
             <h3>PERFIL PREDOMINANTE DO USUÁRIO</h3>
-            <p class="destaque" id="perfil-predominante">xx</p>
-            <p class="pequeno" id="porcentagem-predominancia">yy</p>
+            <p class="destaque" id="perfil-predominante">Sem perfil predominante</p>
+            <p class="pequeno" id="porcentagem-predominancia">Responda ao quiz para descobrir!</p>
         </div>
 
         <div class="card">
             <h3>RELAÇÃO ENTRE OS LADOS DE AFINIDADE</h3>
             <div class="porcentagens">
-                <p class="destaque">Sobrevivente: <span id="porcentagem-sobrevivente"></span></p>
-                <p class="pequeno">Assassino: <span id="porcentagem-assassino"></span></p>
+                <p class="destaque">Sobrevivente: (não definido) <span id="porcentagem-sobrevivente"></span></p>
+                <p class="pequeno">Assassino: (não definido) <span id="porcentagem-assassino"></span></p>
             </div>
 
         </div>
@@ -76,13 +76,13 @@
 </body>
 
 <script>
-      const nomeDoUsuario = sessionStorage.NOME_USUARIO;
+    const nomeDoUsuario = sessionStorage.NOME_USUARIO;
     if (nomeDoUsuario) {
         document.getElementById('nome_usuario').textContent = nomeDoUsuario.toUpperCase();
     } else {
         document.getElementById('nome_usuario').textContent = 'Visitante';
     }
-    
+
     window.onload = function () {
         obterKPIPerfilPredominante();
         obterKPILadoAfinidade();
@@ -151,22 +151,41 @@
 
         // }
 
-        fetch(`/usuarioEstilo/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
+        fetch(`/usuarioEstilo/${idUsuario}`, { cache: 'no-store' })
+            .then(function (response) {
+
+                if (!response.ok) {
+                    throw new Error('Erro na API: ' + response.status);
+                }
+
+                return response.text();
+
+            })
+            .then(function (texto) {
+
+                if (texto.trim() === '') {
+
+                    console.log('Nenhum registro encontrado.');
+
+                    plotarGraficoRadar([], idUsuario);
+
+                } else {
+
+                    var resposta = JSON.parse(texto);
+
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
                     resposta.reverse();
 
                     plotarGraficoRadar(resposta, idUsuario);
 
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
+                }
+
+            })
             .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico Estilo Usuário: ${error.message}`);
+                console.error('Erro no gráfico radar:', error);
             });
+
     }
 
     function plotarGraficoRadar(resposta, idUsuario) {
@@ -186,25 +205,35 @@
         console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
-        var registro = resposta[0]
 
-        var dadosSobrevivente = [
-            0,
-            0,
-            0,
-            Number(registro.A),
-            Number(registro.B),
-            Number(registro.C)
-        ];
+        var dadosSobrevivente = [0, 0, 0, 0, 0, 0];
+        var dadosAssassino = [0, 0, 0, 0, 0, 0];
 
-        var dadosAssassino = [
-            Number(registro.D),
-            Number(registro.E),
-            Number(registro.F),
-            0,
-            0,
-            0
-        ];
+        // Verifica se existem registros retornados pela API
+        if (resposta.length > 0) {
+
+            var registro = resposta[0];
+
+            dadosSobrevivente = [
+                0,
+                0,
+                0,
+                Number(registro.A),
+                Number(registro.B),
+                Number(registro.C)
+            ];
+
+            dadosAssassino = [
+                Number(registro.D),
+                Number(registro.E),
+                Number(registro.F),
+                0,
+                0,
+                0
+            ];
+
+        }
+
 
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
@@ -240,7 +269,6 @@
                     borderWidth: 1,
                     pointBackgroundColor: 'rgb(54, 162, 235)',
                     pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
                     pointHoverBorderColor: 'rgb(54, 162, 235)'
                 }, {
                     label: 'Assassino',
@@ -284,7 +312,7 @@
                             backdropColor: 'transparent'
                         },
                         suggestedMin: 0,
-                        suggestedMax: 10
+                        suggestedMax: 5
                     }
                 }
             }
@@ -326,6 +354,10 @@
 
         var registro = resposta[0]
 
+        if (resposta == 204) {
+            console.log('Sem registros')
+        }
+
         const config = new Chart(document.getElementById('ranking-estilos'), {
             type: 'bar',
             data: {
@@ -341,7 +373,9 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                layout: { padding: { top: 20 } },
+                layout: {
+                     padding: { top: 20 }
+                     },
                 plugins: {
                     legend: { display: false },
                     datalabels: {
@@ -349,7 +383,6 @@
                         align: 'end',
                         color: '#fff',
                         font: { size: 11, weight: 'bold' },
-                        formatter: (valor) => valor
                     }
                 },
                 scales: {
