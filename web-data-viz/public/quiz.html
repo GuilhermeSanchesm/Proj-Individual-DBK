@@ -140,6 +140,24 @@
             alternativaD: "Encerrar a partida rapidamente com todos os alvos incapacitados no chão antes que consigam reparar os geradores.",
             alternativaE: "Executar caças limpas com acertos rápidos de habilidade e hooks sequenciais.",
             alternativaF: "Executar um plano tático tático impecável de controle de território e defesa dos geradores finais."
+        },
+        {
+            pergunta: "Os portões de saída estão energizados e a partida está no final. O que você faz?",
+            alternativaA: "Fico perto do portão provocando o Killer para tentar puxar uma última chase e ajudar quem ainda está longe.",
+            alternativaB: "Abro o portão o mais rápido possível para garantir a fuga antes que o Killer chegue.",
+            alternativaC: "Deixo o portão em 99% e volto para o mapa para salvar quem ficou enganchado ou machucado.",
+            alternativaD: "Acampo o gancho ou foco em quem acabou de ser salvo para garantir pelo menos uma eliminação antes que escapem.",
+            alternativaE: "Patrulho entre os dois portões buscando uma última perseguição rápida para derrubar alguém no caminho.",
+            alternativaF: "Uso perks de endgame ou bloqueio os portões para virar o jogo nos segundos finais."
+        },
+        {
+            pergunta: "Qual situação te deixa mais irritado durante uma partida?",
+            alternativaA: "O Killer desistir da chase depois de 20 segundos só porque foi levado para a shack.",
+            alternativaB: "Fazer 3 geradores sozinho e o time não encostar em nenhum.",
+            alternativaC: "Se arriscar para salvar alguém do gancho e o jogador morrer no segundo estágio ou não deixar o curar.",
+            alternativaD: "Os sobreviventes usarem perks anti-tunnel e conseguirem escapar no final.",
+            alternativaE: "Cair em mapas cheios de estruturas infinitas onde os sobreviventes só seguram W e jogam pallet cedo.",
+            alternativaF: "Os sobreviventes concluírem o 3º gen logo no começo da partida."
         }
     ]
 
@@ -422,7 +440,7 @@
         btnSubmeter.disabled = true;
         btnTentarNovamente.disabled = false;
     }
-      const nomeDoUsuario = sessionStorage.NOME_USUARIO;
+    const nomeDoUsuario = sessionStorage.NOME_USUARIO;
     if (nomeDoUsuario) {
         document.getElementById('nome_usuario').textContent = nomeDoUsuario.toUpperCase();
     } else {
