@@ -109,7 +109,7 @@
             pergunta: "Em uma partida no Reino da Entidade, qual é a sua prioridade máxima nos primeiros minutos?",
             alternativaA: "Correr para estruturas fortes e chamar a atenção do Assassino para iniciar uma caça prolongada.",
             alternativaB: "Localizar o gerador mais próxima e focar 100% na reparação imediata.",
-            alternativaC: "Observar a movimentação dos aliados, buscando itens e preparando-se para curar ou dar cobertura.Proteger os ganchos da Entidade",
+            alternativaC: "Observar a movimentação dos aliados, buscando itens e preparando-se para curar ou dar cobertura.",
             alternativaD: "Localizar o primeiro alvo, derrubá-lo e deixá-lo no chão para aplicar pressão imediata nos demais.",
             alternativaE: "Encontrar um Sobrevivente e engajar na caça com foco total em derrubá-lo rapidamente usando habilidade pura.",
             alternativaF: "Patrulhar e mapear os geradores mais próximos entre si para criar uma zona de defesa estratégica"
@@ -164,8 +164,6 @@
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
     let tentativaIncorreta = 0
-    // let certas = 0
-    // let erradas = 0
 
     // Contadores de estilos de jogo
     let perfilSurvLooper = 0
@@ -184,7 +182,6 @@
     }
 
     function iniciarQuiz() {
-
         document.getElementById('pontuacao').style.display = "none"
         document.getElementById('jogo').style.display = "flex"
         document.getElementById('btnIniciarQuiz').style.display = "none"
@@ -194,9 +191,9 @@
 
         preencherHTMLcomQuestaoAtual(0)
 
-        btnSubmeter.disabled = false
-        btnProx.disabled = true
-        btnTentarNovamente.disabled = false
+        document.getElementById('btnSubmeter').disabled = false
+        document.getElementById('btnProx').disabled = true
+        document.getElementById('btnTentarNovamente').disabled = true
     }
 
     function preencherHTMLcomQuestaoAtual(index) {
@@ -210,7 +207,6 @@
         document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
         document.getElementById("labelOpcaoCinco").innerHTML = questaoAtual.alternativaE;
         document.getElementById("labelOpcaoSeis").innerHTML = questaoAtual.alternativaF;
-
     }
 
     function submeter() {
@@ -227,8 +223,10 @@
         if (!hasChecked) {
             alert("Não há alternativas escolhidas. Escolha uma opção.")
         } else {
-            btnSubmeter.disabled = true
-            btnProx.disabled = false
+
+            document.getElementById('btnSubmeter').disabled = true
+            document.getElementById('btnProx').disabled = false
+
             habilitarAlternativas(false)
             checarResposta()
         }
@@ -246,8 +244,9 @@
     }
 
     function avancar() {
-        btnProx.disabled = true
-        btnSubmeter.disabled = false
+
+        document.getElementById('btnProx').disabled = true
+        document.getElementById('btnSubmeter').disabled = false
 
         desmarcarRadioButtons()
         limparCoresBackgroundOpcoes()
@@ -260,6 +259,7 @@
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
         } else {
             finalizarJogo();
+            document.getElementById('btnTentarNovamente').disabled = false 
 
             fetch("/quiz/cadastrar", {
                 method: "POST",
@@ -331,7 +331,6 @@
                 else if (options[i].value == "alternativaF") {
                     perfilKillerControlador++;
                 }
-
             }
         }
     }
@@ -339,8 +338,10 @@
     function limparCoresBackgroundOpcoes() {
         const options = document.getElementsByName("option");
         options.forEach((option) => {
-            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+            if (option.labels && option.labels[0]) {
+                document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
+                document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+            }
         })
     }
 
@@ -360,7 +361,6 @@
             perfilDominante = perfilSurvLooper;
             perfilFinal = 'Sobrevivente Looper';
             fkPerfilDominante = 1;
-
         }
         if (perfilSurvSup > perfilDominante) {
             perfilDominante = perfilSurvSup;
@@ -404,20 +404,17 @@
             textoDescricaoEstilo = "Você se dedica a <b>manter a equipe viva e funcional</b>, focando em curar aliados feridos, realizar resgates seguros nos ganchos, bloquear golpes e fornecer informações."
             classComCoresParaMensagemFinal = "text-success-with-bg";
             document.getElementById('img-resultado').src = "./Assets/surv-suporte.png";
-
         } else if (perfilFinal == 'Killer Chaser') {
             textoParaMensagemFinal = "Seu perfil é Killer Chaser, implacável nas perseguições!";
             textoDescricaoEstilo = "Você foca em <b>encerrar perseguições o mais rápido possível</b>, utilizando poderes de mobilidade ou habilidades de combate direto para enganchar sobreviventes em ritmo acelerado."
             classComCoresParaMensagemFinal = "text-danger-with-bg";
             document.getElementById('img-resultado').src = "./Assets/killer-chaser.png";
-
         }
         else if (perfilFinal == 'Killer Tunneler') {
             textoParaMensagemFinal = "Seu perfil é Killer Tunneler, focado em eliminar um alvo por vez!";
             textoDescricaoEstilo = "Você concentra seus esforços em <b>perseguir e enganchar repetidamente um único sobrevivente </b>recém-resgatado, buscando eliminá-lo da partida rapidamente para reduzir a força de trabalho da equipe adversária."
             classComCoresParaMensagemFinal = "text-danger-with-bg";
             document.getElementById('img-resultado').src = "./Assets/killer-tuneller.png";
-
         }
         else if (perfilFinal == 'Killer Controlador de mapa') {
             textoParaMensagemFinal = "Seu perfil é Killer Controlador, dominando o território e os geradores!";
@@ -432,21 +429,21 @@
         document.getElementById('descricao-estilo').innerHTML = textoDescricaoEstilo;
         document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal);
         document.getElementById('spanPontuacaoFinal').innerHTML = `<b>${perfilFinal}</b>`;
-        document.getElementById('jogo').style.display = 'none'
+        document.getElementById('jogo').style.display = 'none';
 
         document.getElementById('jogo').classList.add("text-new-gray");
 
-        btnProx.disabled = true;
-        btnSubmeter.disabled = true;
-        btnTentarNovamente.disabled = false;
+        document.getElementById('btnProx').disabled = true;
+        document.getElementById('btnSubmeter').disabled = true;
+        document.getElementById('btnTentarNovamente').disabled = false;
     }
+
     const nomeDoUsuario = sessionStorage.NOME_USUARIO;
     if (nomeDoUsuario) {
         document.getElementById('nome_usuario').textContent = nomeDoUsuario.toUpperCase();
     } else {
         document.getElementById('nome_usuario').textContent = 'Visitante';
     }
-
 </script>
 
 </html>
