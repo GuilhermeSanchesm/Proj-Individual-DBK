@@ -18,7 +18,7 @@
             <li><a href="../quiz.html">QUIZ</a></li>
             <li><a href="./dashboard/dashboard.html">DASHBOARD</a></li>
         </ul>
-        <a href="./login.html"><button class="btn">SAIR</button></a>
+        <a href="../index.html"><button class="btn">SAIR</button></a>
     </nav>
     <h1>ANÁLISE DE PERFIL DE JOGADOR</h1>
     <section class="cards">
@@ -31,8 +31,8 @@
         <div class="card">
             <h3>RELAÇÃO ENTRE OS LADOS DE AFINIDADE</h3>
             <div class="porcentagens">
-                <p class="destaque">Sobrevivente: (não definido) <span id="porcentagem-sobrevivente"></span></p>
-                <p class="pequeno">Assassino: (não definido) <span id="porcentagem-assassino"></span></p>
+                <p class="destaque">Sobrevivente: <span id="porcentagem-sobrevivente">(não definido)</span></p>
+                <p class="pequeno">Assassino: <span id="porcentagem-assassino">(não definido)</span></p>
             </div>
 
         </div>
@@ -290,7 +290,7 @@
                         display: true,
                         position: 'bottom',
                         labels: {
-                            color: '#fff'
+                            color: '#ffff'
                         }
                     },
                     datalabels: {
@@ -299,20 +299,23 @@
                 },
                 scales: {
                     r: {
+                        pointLabels: {
+                            color: '#ffffff'
+                        },
                         angleLines: {
                             display: true,
-                            color: 'rgba(255, 255, 255, 0.2)'
+                            color: 'rgba(255, 255, 255, 0.9)'
                         },
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.15)'
+                            color: 'rgba(255, 255, 255, 0.6)'
                         },
                         ticks: {
                             display: false,
                             color: '#fff',
-                            backdropColor: 'transparent'
+                            backdropColor: '#ffff'
                         },
                         suggestedMin: 0,
-                        suggestedMax: 5
+                        suggestedMax: 8
                     }
                 }
             }
@@ -374,20 +377,21 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 layout: {
-                     padding: { top: 20 }
-                     },
+                    padding: { top: 20 }
+                },
                 plugins: {
                     legend: { display: false },
                     datalabels: {
                         anchor: 'end',
                         align: 'end',
                         color: '#fff',
-                        font: { size: 11, weight: 'bold' },
+                        font: { size: 12, weight: 'bold' },
                     }
                 },
                 scales: {
                     x: {
-                        grid: { display: false }
+                        grid: { display: false },
+                        ticks: {color: '#ffff'}
                     },
                     y: {
                         display: false,
@@ -451,7 +455,10 @@
                 plugins: {
                     legend: {
                         display: true,
-                        position: 'bottom'
+                        position: 'bottom',
+                        labels: {
+                            color: '#ffff'
+                        }
                     },
                     datalabels: {
                         display: true,

@@ -131,13 +131,13 @@ body h1{
 }
 
 .graficos h3{
-    font-size: 16px;
+    font-size: 18px;
     margin-top: 40px;
     text-align: center;
 }
 
 .graficos p{
-    font-size: 14px;
+    font-size: 16px;
     text-align: center;
     padding-top: 10px;
 }
@@ -146,12 +146,12 @@ body h1{
     margin-top: 30px;
     box-shadow: 0px 4px 20px rgba(1, 0, 2, 0.8);
     padding: 10px;
-    height: 350px; 
+    height: 370px; 
 }
 
 #ranking-estilos{
     height: 330px;
-    width: 300px;
+    width: 330px;
 }
 
 #grafico-radar{
