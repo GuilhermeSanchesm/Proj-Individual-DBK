@@ -75,7 +75,6 @@
 
             <div id="botoes" class="flex-colunar padding-8">
                 <button onclick="submeter()" id="btnSubmeter">RESPONDER</button>
-                <button onclick="avancar()" id="btnProx" disabled>AVANÇAR</button>
             </div>
 
         </div>
@@ -83,8 +82,6 @@
         <div id="pontuacao" class="flex-lado width-fit-content">
             <div id="pontuacaoDuranteJogo" class="flex-colunar padding-8">
                 <h3>RESULTADO</h3>
-                <!-- <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas">0</span></span>
-                    <span class="width-fit-content">Quantidade de erros: <span id="spanErradas">0</span></span> -->
             </div>
             <div id="pontuacaoFinalJogo" class="flex-colunar padding-8">
                 <span id="pontuacaoFinal" class="width-fit-content">Estilo de jogo dominante: <span
@@ -192,7 +189,6 @@
         preencherHTMLcomQuestaoAtual(0)
 
         document.getElementById('btnSubmeter').disabled = false
-        document.getElementById('btnProx').disabled = true
         document.getElementById('btnTentarNovamente').disabled = true
     }
 
@@ -222,13 +218,10 @@
 
         if (!hasChecked) {
             alert("Não há alternativas escolhidas. Escolha uma opção.")
+            return; 
         } else {
-
-            document.getElementById('btnSubmeter').disabled = true
-            document.getElementById('btnProx').disabled = false
-
-            habilitarAlternativas(false)
-            checarResposta()
+            checarResposta();
+            avancar();
         }
     }
 
@@ -244,9 +237,6 @@
     }
 
     function avancar() {
-
-        document.getElementById('btnProx').disabled = true
-        document.getElementById('btnSubmeter').disabled = false
 
         desmarcarRadioButtons()
         limparCoresBackgroundOpcoes()
@@ -399,7 +389,7 @@
             classComCoresParaMensagemFinal = "text-warning-with-bg";
             document.getElementById('img-resultado').src = "./Assets/surv-looper.jpeg";
         }
-        else if (perfilFinal == 'Sobrevivente Suporte') {
+        else if (perfilFinal == 'Sobrevivente Suport') {
             textoParaMensagemFinal = "Seu perfil de jogador é Sobrevivente Suporte, focado em curar e ajudar o time!";
             textoDescricaoEstilo = "Você se dedica a <b>manter a equipe viva e funcional</b>, focando em curar aliados feridos, realizar resgates seguros nos ganchos, bloquear golpes e fornecer informações."
             classComCoresParaMensagemFinal = "text-success-with-bg";
@@ -433,7 +423,6 @@
 
         document.getElementById('jogo').classList.add("text-new-gray");
 
-        document.getElementById('btnProx').disabled = true;
         document.getElementById('btnSubmeter').disabled = true;
         document.getElementById('btnTentarNovamente').disabled = false;
     }
