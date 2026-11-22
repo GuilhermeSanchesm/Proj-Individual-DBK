@@ -31,7 +31,6 @@ O projeto também permite registrar as respostas do quiz e utilizar esses dados 
 - **Node.js** — ambiente de execução do back-end.
 - **Express** — criação do servidor e das rotas da aplicação.
 - **MySQL** — armazenamento dos dados.
-- **mysql2** — conexão entre a aplicação e o banco de dados.
 - **Chart.js** — criação dos gráficos da dashboard.
 - **Web Data Viz** — estrutura de referência utilizada no desenvolvimento da aplicação.
 
@@ -82,11 +81,11 @@ Antes de iniciar, é necessário ter instalado:
 
 ### 1. Acessar a pasta da aplicação
 
-No terminal, entre na pasta `web-data-viz`, onde está localizado o arquivo `package.json`.
+No terminal, entre na pasta `projeto-dbk`, onde está localizado o arquivo `package.json`.
 
 ### 2. Configurar o banco de dados
 
-Configure o banco MySQL de acordo com a estrutura utilizada pela aplicação. Os arquivos SQL disponíveis estão em `src/database/`. O diagrama `DERdbk.png`, na pasta principal, pode ser consultado para visualizar a estrutura do banco.
+Configure o banco MySQL de acordo com a estrutura utilizada pela aplicação. Os arquivos SQL disponíveis estão em `src/database/`.
 
 ### 3. Configurar as variáveis de ambiente
 
