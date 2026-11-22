@@ -40,7 +40,7 @@ O projeto também permite registrar as respostas do quiz e utilizar esses dados 
 A aplicação está organizada, principalmente, da seguinte forma:
 
 ```text
-web-data-viz/
+projeto-dbk/
 ├── app.js
 ├── package.json
 ├── public/
