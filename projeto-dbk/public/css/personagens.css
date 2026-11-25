@@ -118,6 +118,23 @@ nav .nav-selecionado {
     text-align: center;
 }
 
+.titulo-galeria{
+    font-size: 40px;
+    color: #ffff;
+    font-family: "Inter", sans-serif;
+    text-align: center;
+
+}
+
+.galeria-descricao{
+    color: #ffff;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    padding-top: 20px;
+    font-weight: lighter;
+}
+
 .home .opcao-exibir {
     color: #ffff;
     text-align: center;
