@@ -11,6 +11,7 @@ router.get("/listar", function (req, res) {
     quizController.listar(req, res);
 });
 
+// Atualiza a fk do usuario com o perfil dominante atual
 router.put("/atualizarPerfil", function (req, res) {
     quizController.atualizarPerfil(req, res);
 });

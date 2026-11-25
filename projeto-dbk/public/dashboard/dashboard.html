@@ -38,6 +38,7 @@
         </div>
     </section>
 
+    <!-- Declara os gráficos -->
     <section class="graficos">
 
         <div class="grafico-radar">
@@ -83,6 +84,7 @@
         document.getElementById('nome_usuario').textContent = 'Visitante';
     }
 
+    // Aciona as funções de coleta de dados assim que a página recarrega
     window.onload = function () {
         obterKPIPerfilPredominante();
         obterKPILadoAfinidade();
@@ -172,9 +174,7 @@
                 } else {
 
                     var resposta = JSON.parse(texto);
-
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
                     resposta.reverse();
 
                     plotarGraficoRadar(resposta, idUsuario);
@@ -209,7 +209,7 @@
         var dadosSobrevivente = [0, 0, 0, 0, 0, 0];
         var dadosAssassino = [0, 0, 0, 0, 0, 0];
 
-        // Verifica se existem registros retornados pela API
+        // Organiza os dados retornados entre os sobreviventes e os assassinos
         if (resposta.length > 0) {
 
             var registro = resposta[0];
@@ -248,8 +248,8 @@
             data: dados,
         };
 
-        // Adicionando gráfico criado em div na tela
         let myChart = new Chart(document.getElementById('grafico-radar'), {
+            // Configuração dos dados populados no radar
             type: 'radar',
             data: {
                 labels: [
@@ -286,6 +286,7 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
+                    // Definição das legendas na parte inferior
                     legend: {
                         display: true,
                         position: 'bottom',
@@ -363,6 +364,7 @@
 
         const config = new Chart(document.getElementById('ranking-estilos'), {
             type: 'bar',
+            // Configuração dos dados populados no gráfico
             data: {
                 labels: ['Looper', 'Gen Rush', 'Suporte', 'Chaser', 'Tunneler', 'Controlador'],
                 datasets: [{
@@ -373,6 +375,7 @@
                 },
                 ]
             },
+            // Configurações de responsividade e tamanho
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -380,6 +383,7 @@
                     padding: { top: 20 }
                 },
                 plugins: {
+                    // Definição das legendas 
                     legend: { display: false },
                     datalabels: {
                         anchor: 'end',
@@ -391,7 +395,7 @@
                 scales: {
                     x: {
                         grid: { display: false },
-                        ticks: {color: '#ffff'}
+                        ticks: { color: '#ffff' }
                     },
                     y: {
                         display: false,
@@ -437,6 +441,7 @@
 
         const config = new Chart(document.getElementById('distribuicao-rosca'), {
             type: 'doughnut',
+            // Configuração dos dados e fatias da rosca
             data: {
                 labels: ['Sobrevivente', 'Assassino'],
                 datasets: [{
@@ -449,6 +454,7 @@
                     borderWidth: 0
                 }]
             },
+            // Configurações de layout, legendas e exibição de porcentagens nas fatias
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -460,6 +466,7 @@
                             color: '#ffff'
                         }
                     },
+                    // Configurações do DataLabels para mostrar o símbolo de porcentagem nas fatias
                     datalabels: {
                         display: true,
                         color: '#fff',

@@ -2,6 +2,7 @@ var database = require("../database/config");
 
 function usuarioEstilo(idUsuario) {
 
+// Estilos de jogo do usuário baseado nas suas respostas
 var instrucaoSql = `
 SELECT u.id_usuario, SUM(rq.alternativaA) 'A',
 SUM(rq.alternativaB) 'B',

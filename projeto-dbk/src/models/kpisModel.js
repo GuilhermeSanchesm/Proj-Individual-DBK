@@ -3,6 +3,7 @@ var database = require("../database/config")
 // Consulta do perfil dominante
 function buscarPerfilDominante(idUsuario) {
 
+    // Perfil dominante do usuário logado
     var instrucaoSql = ` 
 SELECT 
     u.nome AS 'Nome do usuario',
@@ -24,6 +25,7 @@ LIMIT 1;
 // Consulta dos lados de afinidade
 function buscarLadoAfinidade(idUsuario) {
 
+    // Lado afinidade do usuário logado
     var instrucaoSql = ` 
 SELECT 
     u.id_usuario,

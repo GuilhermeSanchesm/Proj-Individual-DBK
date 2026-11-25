@@ -69,6 +69,7 @@
 <script>
         let requisitos_cadastro_global = 0;
 
+        // Validações de preenchimento de senha com critérios de tamanho e letra
         function validar_seguranca() {
             let requisitos_cadastro = 0;
             let senha = ipt_senha.value;
@@ -120,7 +121,7 @@
 
             requisitos_cadastro_global = requisitos_cadastro;
         }
-
+    
         function validar_confirmacao() {
             let confirma_senha = ipt_confirma_senha.value;
 
@@ -129,13 +130,13 @@
             }
         }
 
-        // 1. Função principal acionada pelo botão de cadastro
         function cadastrar() {
             let nomeVar = ipt_nome.value;
             let emailVar = ipt_email.value;
             let senhaVar = ipt_senha.value;
             let confirma_senha = ipt_confirma_senha.value;
 
+            // Validação dos input ao tentar se cadastrar
             if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirma_senha == "") {
                 mensagem_cadastro.innerHTML = `<p style="color: #be2424; margin-top: 10px; font-weight: 600;">Preencha todos os campos obrigatórios!</p>`;
                 return false;
@@ -149,6 +150,7 @@
                 mensagem_cadastro.innerHTML = `<p style="color: #be2424; margin-top: 10px; font-weight: 600;">Sua senha atual é muito fraca. Crie outra!</p>`;
                 return false;
             } else {
+                // Após passar pela verificação para cadastro aciona a verificação de email no banco de dados
                 verificarEmailDuplicado();
             }
         }
@@ -156,6 +158,7 @@
         function verificarEmailDuplicado() {
             let emailVar = ipt_email.value;
 
+            // Requisição para saber se o email já existe no banco
             fetch("/usuarios/emailRepetido", {
                 method: "POST",
                 headers: {
@@ -184,6 +187,7 @@
             let emailVar = ipt_email.value;
             let senhaVar = ipt_senha.value;
 
+            // Envia os dados do usuário cadastrado para o banco
             fetch("/usuarios/cadastrar", {
                 method: "POST",
                 headers: {

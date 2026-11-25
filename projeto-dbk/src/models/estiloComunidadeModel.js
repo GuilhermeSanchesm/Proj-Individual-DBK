@@ -2,6 +2,7 @@ var database = require("../database/config");
 
 function rankingEstilos() {
 
+    // Respostas gerais dos estilos da comunidade
     var instrucaoSql = `
 SELECT 
     SUM(alternativaA) AS 'A',
@@ -19,6 +20,7 @@ FROM resultado_quiz;
 
 function comparacaoAfinidade() {
 
+    // Lados de afinidade entre todas as respostas da comunidade
     var instrucaoSql = `
 SELECT 
     SUM(alternativaA + alternativaB + alternativaC) AS 'Sobreviventes',

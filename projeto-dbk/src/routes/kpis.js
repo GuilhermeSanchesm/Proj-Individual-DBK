@@ -11,10 +11,12 @@ router.get("/listar", function (req, res) {
     kpisController.listar(req, res);
 });
 
+// Busca perfil dominante
 router.get("/perfilDominante/:idUsuario", function (req, res) {
     kpisController.buscarPerfilDominante(req, res);
 });
 
+// Busca afinidade do usuario entre sobrevivente e assassino
 router.get("/ladoAfinidade/:idUsuario", function (req, res) {
     kpisController.buscarLadoAfinidade(req, res);
 });

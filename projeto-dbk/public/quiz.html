@@ -97,10 +97,10 @@
             </div>
         </div>
     </div>
-
 </body>
 
 <script>
+    // Perguntas do quiz
     const listaDeQuestoes = [
         {
             pergunta: "Em uma partida no Reino da Entidade, qual é a sua prioridade máxima nos primeiros minutos?",
@@ -301,6 +301,7 @@
     function checarResposta() {
         const options = document.getElementsByName("option");
 
+        // Verifica as respostas de acordo com a alternativa e soma no seu respectivo contador
         for (let i = 0; i < options.length; i++) {
             if (options[i].checked) {
                 if (options[i].value == "alternativaA") {
@@ -343,6 +344,7 @@
     }
 
     function finalizarJogo() {
+        // Valida qual o perfil final do quiz e atribui a fk do banco correspondente a ele
         let perfilDominante = perfilSurvGen;
         let perfilFinal = 'Sobrevivente Gen Rush';
         fkPerfilDominante = 2;
@@ -377,6 +379,7 @@
         let classComCoresParaMensagemFinal = "";
         let textoDescricaoEstilo = "";
 
+        // Altera o texto, descrição e imagem do resultado final do quiz
         if (perfilFinal == 'Sobrevivente Gen Rush') {
             textoParaMensagemFinal = "Seu perfil de jogador é Gen Rush, voltado a fazer geradores!";
             textoDescricaoEstilo = "Você prioriza exclusivamente o <b>reparo rápido dos geradores</b>, evitando perseguições e utilizando vantagens e itens voltados para acelerar os objetivos principais."
@@ -389,7 +392,7 @@
             classComCoresParaMensagemFinal = "text-warning-with-bg";
             document.getElementById('img-resultado').src = "./Assets/surv-looper.jpeg";
         }
-        else if (perfilFinal == 'Sobrevivente Suport') {
+        else if (perfilFinal == 'Sobrevivente Suporte') {
             textoParaMensagemFinal = "Seu perfil de jogador é Sobrevivente Suporte, focado em curar e ajudar o time!";
             textoDescricaoEstilo = "Você se dedica a <b>manter a equipe viva e funcional</b>, focando em curar aliados feridos, realizar resgates seguros nos ganchos, bloquear golpes e fornecer informações."
             classComCoresParaMensagemFinal = "text-success-with-bg";
@@ -413,6 +416,7 @@
             document.getElementById('img-resultado').src = "./Assets/killer-controlador.png";
         }
 
+        // Exibe o resultado do quiz na tela
         document.getElementById('pontuacao').style.display = "flex";
         document.getElementById('img-resultado').style.display = "grid";
         document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal;

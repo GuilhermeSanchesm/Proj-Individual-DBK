@@ -222,6 +222,8 @@
         document.getElementById('nome_usuario').textContent = 'Visitante';
     }
 
+
+    // Define nome, descricao e imagem de cada killer
     const listaKillers = [
         {
             nome: "O TRAPPER",
@@ -320,6 +322,7 @@
         }
     ];
 
+    // Define nome, descricao e imagem de cada sobrevivente
     const listaSobreviventes = [
         {
             nome: "DWIGHT",
@@ -386,6 +389,7 @@
     let indiceAtual = 0;
     let categoriaAtual = 'killers';
 
+    // Mostra os assassinos com base no índice da clicagem
     function mostrar_killers() {
         categoriaAtual = 'killers';
         indiceAtual = 0;
@@ -398,6 +402,7 @@
         document.getElementById('imagem-sobre').src = listaKillers[indiceAtual].imagem;
     }
 
+    // Mostra os sobreviventes com base no índice da clicagem
     function mostrar_sobreviventes() {
         categoriaAtual = 'sobreviventes';
         indiceAtual = 0;
@@ -414,6 +419,7 @@
         if (categoriaAtual === 'killers') {
             indiceAtual++;
 
+            // Se chegar ao final da lista de killers, reinicia do começo
             if (indiceAtual >= listaKillers.length) {
                 indiceAtual = 0;
             }
@@ -425,6 +431,7 @@
         } else {
             indiceAtual++;
 
+            // Se chegar ao final da lista de sobreviventes, reinicia do começo
             if (indiceAtual >= listaSobreviventes.length) {
                 indiceAtual = 0;
             }

@@ -12,6 +12,7 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+// Rota para validação de email repetido ao cadastrar conta
 router.post("/emailRepetido", function (req, res) {
     usuarioController.emailRepetido(req, res);
 });
