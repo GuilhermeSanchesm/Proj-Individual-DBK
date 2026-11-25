@@ -22,7 +22,14 @@ function cadastrar(nome, email, senha) {
     return database.executar(instrucaoSql);
 }
 
+function emailRepetido (email) {
+    var instrucaoSql = `SELECT email FROM usuario WHERE email = '${email}'`
+
+    console.log("Eexecutando a instrução sql: \n" + instrucaoSql)
+    return database.executar(instrucaoSql)
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    emailRepetido
 };

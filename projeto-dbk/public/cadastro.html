@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <script>
+<script>
         let requisitos_cadastro_global = 0;
 
         function validar_seguranca() {
@@ -129,6 +129,7 @@
             }
         }
 
+        // 1. Função principal acionada pelo botão de cadastro
         function cadastrar() {
             let nomeVar = ipt_nome.value;
             let emailVar = ipt_email.value;
@@ -147,8 +148,41 @@
             } else if (requisitos_cadastro_global < 1) {
                 mensagem_cadastro.innerHTML = `<p style="color: #be2424; margin-top: 10px; font-weight: 600;">Sua senha atual é muito fraca. Crie outra!</p>`;
                 return false;
+            } else {
+                verificarEmailDuplicado();
             }
+        }
 
+        function verificarEmailDuplicado() {
+            let emailVar = ipt_email.value;
+
+            fetch("/usuarios/emailRepetido", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: emailVar
+                })
+            })
+            .then(function (resposta) {
+
+                if (resposta.ok) {
+                    enviarCadastroParaBanco();
+                } else {
+                    mensagem_cadastro.innerHTML = `<p style="color: #be2424; margin-top: 10px; font-weight: 600;">Este e-mail já está cadastrado!</p>`;
+                }
+            })
+            .catch(function (erro) {
+                console.log(`#ERRO: ${erro}`);
+                mensagem_cadastro.innerHTML = `<p style="color: #be2424; margin-top: 10px; font-weight: 600;">Erro ao verificar o e-mail no servidor.</p>`;
+            });
+        }
+
+        function enviarCadastroParaBanco() {
+            let nomeVar = ipt_nome.value;
+            let emailVar = ipt_email.value;
+            let senhaVar = ipt_senha.value;
 
             fetch("/usuarios/cadastrar", {
                 method: "POST",
@@ -161,26 +195,24 @@
                     senhaServer: senhaVar,
                 }),
             })
-                .then(function (resposta) {
-                    console.log("resposta: ", resposta);
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-                    if (resposta.ok) {
-                        mensagem_cadastro.innerHTML = `<p style="color: #3aad16; font-size: 16px; font-weight: 600; margin-top: 10px;">Cadastro realizado com sucesso! Redirecionando...</p>`;
+                if (resposta.ok) {
+                    mensagem_cadastro.innerHTML = `<p style="color: #3aad16; font-size: 16px; font-weight: 600; margin-top: 10px;">Cadastro realizado com sucesso! Redirecionando...</p>`;
 
-                        setTimeout(() => {
-                            window.location = "login.html";
-                        }, "2000");
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000");
 
-                    } else {
-                        throw "Houve um erro ao tentar realizar o cadastro!";
-                    }
-                })
-                .catch(function (resposta) {
-                    console.log(`#ERRO: ${resposta}`);
-                    mensagem_cadastro.innerHTML = `<p style="color: #be2424; margin-top: 10px; font-weight: 600;">Houve um erro ao tentar realizar o cadastro no servidor.</p>`;
-                });
-
-            return false;
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                mensagem_cadastro.innerHTML = `<p style="color: #be2424; margin-top: 10px; font-weight: 600;">Houve um erro ao tentar realizar o cadastro no servidor.</p>`;
+            });
         }
 
         function sumirMensagem() {

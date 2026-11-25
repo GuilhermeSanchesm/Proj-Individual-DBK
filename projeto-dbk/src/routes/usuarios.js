@@ -12,4 +12,8 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.post("/emailRepetido", function (req, res) {
+    usuarioController.emailRepetido(req, res);
+});
+
 module.exports = router;

@@ -19,10 +19,10 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
                         res.json({
-                            id_usuario:resultadoAutenticar[0].id_usuario,
-                            nome:resultadoAutenticar[0].nome,
-                            email:resultadoAutenticar[0].email,
-                            senha:resultadoAutenticar[0].senha
+                            id_usuario: resultadoAutenticar[0].id_usuario,
+                            nome: resultadoAutenticar[0].nome,
+                            email: resultadoAutenticar[0].email,
+                            senha: resultadoAutenticar[0].senha
                         })
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
@@ -75,7 +75,40 @@ function cadastrar(req, res) {
     }
 }
 
+function emailRepetido(req, res) {
+
+    var email = req.body.emailServer;
+
+    if (email == undefined) {
+        res.status(400).send("Seu email está indefinido!");
+    } else {
+
+        usuarioModel.emailRepetido(email)
+            .then(
+                function (resultadoEmail) {
+                    console.log(`\nResultados encontrados: ${resultadoEmail.length}`);
+
+                    if (resultadoEmail.length == 1) {
+
+                        res.status(403).send("Email e/ou senha inválido(s)");
+
+                    } else if (resultadoEmail.length == 0) {
+
+                        return res.status(200).send("Email disponível");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    emailRepetido
 }
