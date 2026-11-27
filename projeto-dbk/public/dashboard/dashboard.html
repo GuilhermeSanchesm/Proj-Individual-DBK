@@ -99,25 +99,31 @@
     function obterKPIPerfilPredominante(idUsuario) {
         var idUsuario = sessionStorage.ID_USUARIO;
 
+        fetch(`/kpis/perfilDominante/${idUsuario}`, { cache: 'no-store' })
+            .then(function (response) {
+                if (response.ok) {
+                    if (response.status == 204) {
+                        document.getElementById('perfil-predominante').innerHTML = "Sem perfil";
+                        document.getElementById('porcentagem-predominancia').innerHTML = "0%";
+                        return;
+                    }
 
-        fetch(`/kpis/perfilDominante/${idUsuario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos KPI: ${JSON.stringify(resposta)}`);
 
-                    var dadosKpi = resposta[0];
+                        var dadosKpi = resposta[0];
 
-                    document.getElementById('perfil-predominante').innerHTML = dadosKpi['Perfil predominante'];
-                    document.getElementById('porcentagem-predominancia').innerHTML = dadosKpi['Porcentagem'] + '% de similaridade';
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
+                        if (dadosKpi) {
+                            document.getElementById('perfil-predominante').innerHTML = dadosKpi['Perfil predominante'];
+                            document.getElementById('porcentagem-predominancia').innerHTML = dadosKpi['Porcentagem'] + '% de similaridade';
+                        }
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
             .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                console.error(`Erro na obtenção dos dados p/ KPI: ${error.message}`);
             });
     }
 
@@ -150,8 +156,6 @@
     // Função para obter os dados do gráfico de RADAR para o estilo do usuário
     function obterDadosGraficoRadar(idUsuario) {
         var idUsuario = sessionStorage.ID_USUARIO
-
-        // }
 
         fetch(`/usuarioEstilo/${idUsuario}`, { cache: 'no-store' })
             .then(function (response) {

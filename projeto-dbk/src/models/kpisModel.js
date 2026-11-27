@@ -2,22 +2,20 @@ var database = require("../database/config")
 
 // Consulta do perfil dominante
 function buscarPerfilDominante(idUsuario) {
-
-    // Perfil dominante do usuário logado
     var instrucaoSql = ` 
-SELECT 
-    u.nome AS 'Nome do usuario',
-    IFNULL(p.nome, 'Sem perfil cadastrado') AS 'Perfil predominante',
-    ROUND((COUNT(rq.fk_perfil_dominante) / (SELECT COUNT(*) FROM resultado_quiz WHERE fk_usuario = ${idUsuario})) * 100, 0) AS 'Porcentagem'
-FROM resultado_quiz rq
-JOIN usuario u ON rq.fk_usuario = u.id_usuario
-JOIN perfil p ON rq.fk_perfil_dominante = p.id_perfil
-WHERE u.id_usuario = ${idUsuario}
-GROUP BY u.id_usuario, u.nome, p.id_perfil, p.nome
-ORDER BY COUNT(rq.fk_perfil_dominante) DESC
-LIMIT 1;
+        SELECT 
+            u.nome AS nomeUsuario,
+            IFNULL(SUM(rq.alternativaA), 0) AS totalA,
+            IFNULL(SUM(rq.alternativaB), 0) AS totalB,
+            IFNULL(SUM(rq.alternativaC), 0) AS totalC,
+            IFNULL(SUM(rq.alternativaD), 0) AS totalD,
+            IFNULL(SUM(rq.alternativaE), 0) AS totalE,
+            IFNULL(SUM(rq.alternativaF), 0) AS totalF
+        FROM usuario u
+        LEFT JOIN resultado_quiz rq ON u.id_usuario = rq.fk_usuario
+        WHERE u.id_usuario = ${idUsuario}
+        GROUP BY u.id_usuario, u.nome;
     `;
-
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
